@@ -1,0 +1,7 @@
+{
+    "books": [
+        { "id": 1, "title": "Dark Tower", "author": "Steven King" },
+        { "id": 2, "title": "Salems Lot", "author": "Steven King" },
+        { "id": 3, "title": "Green Mile", "author": "Steven King" }
+    ]
+}
