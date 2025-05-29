@@ -1,7 +1,72 @@
 {
     "books": [
-        { "id": 1, "title": "Dark Tower", "author": "Steven King" },
-        { "id": 2, "title": "Salems Lot", "author": "Steven King" },
-        { "id": 3, "title": "Green Mile", "author": "Steven King" }
+        {
+            "id": 1,
+            "titles": ["Фиеста", "Вешние воды"],
+            "author": "Эрнест Хемингуэй",
+            "yearOfPublication": 2022,
+            "numberOfPages": 352,
+            "seriesOfBooks": "Библиотека классики",
+            "isRead": true
+        },
+        {
+            "id": 2,
+            "title": ["Тени в раю"],
+            "author": "Эрих Мария Ремарк",
+            "yearOfPublication": 2021,
+            "numberOfPages": 384,
+            "seriesOfBooks": "Библиотека классики",
+            "isRead": true
+        },
+        {
+            "id": 3,
+            "title": ["Три товарища"],
+            "author": "Эрих Мария Ремарк",
+            "yearOfPublication": 2021,
+            "numberOfPages": 480,
+            "seriesOfBooks": "Библиотека классики",
+            "isRead": true
+        },
+        {
+            "id": 4,
+            "title": ["На Западном фронте без перемен", "На обратном пути"],
+            "author": "Эрих Мария Ремарк",
+            "yearOfPublication": 2022,
+            "numberOfPages": 512,
+            "seriesOfBooks": "Библиотека классики",
+            "isRead": false
+        },
+        {
+            "id": 5,
+            "title": ["Призрак дома на холме"],
+            "author": "Ширли Джексон",
+            "yearOfPublication": 2021,
+            "numberOfPages": 512,
+            "seriesOfBooks": "Эксклюзивная классика",
+            "isRead": true
+        }
+    ],
+    "authors": [
+        {
+            "id": 1,
+            "name": "Эрнест Хемингуэй",
+            "works": ["Фиеста", "Вешние воды"],
+            "birthday": "21 июля 1899",
+            "dayOfDeath": "2 июля 1961"
+        },
+        {
+            "id": 2,
+            "name": "Эрих Мария Ремарк",
+            "works": ["Тени в раю", "Три товарища"],
+            "birthday": "22 июня 1898",
+            "dayOfDeath": "25 сентября 1970"
+        },
+        {
+            "id": 3,
+            "name": "Ширли Джексон",
+            "works": ["Призрак дома на холме"],
+            "birthday": "14 декабря 1916",
+            "dayOfDeath": "8 августа 1965"
+        }
     ]
 }
