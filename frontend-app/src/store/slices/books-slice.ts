@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+// const LOCAL_URL = "http://localhost:3000/books";
+const URL = "http://localhost:3000/api/books";
+
 type Status = {
     LOADING: "loading";
     RESOLVED: "resolved";
@@ -35,7 +38,7 @@ const initialState: State = {
 };
 
 export const fetchBooks = createAsyncThunk("@books/fetchBooks", async () => {
-    const response = await fetch("http://localhost:3000/books");
+    const response = await fetch(URL);
 
     return await response.json();
 });
@@ -52,7 +55,7 @@ export const booksSlice = createSlice({
         builder.addCase(fetchBooks.fulfilled, (state, action) => {
             state.status = STATUS_LOADING.RESOLVED;
             state.bookList = action.payload;
-            console.log(state.bookList)
+            console.log(state.bookList);
         });
         builder.addCase(fetchBooks.rejected, (state, action) => {
             state.status = STATUS_LOADING.REJECTED;

@@ -1,6 +1,6 @@
 const express = require("express");
-const router = express.Router();
 const { getDB } = require("../db/mongoClient");
+const router = express.Router();
 
 // Получить все книги
 router.get("/", async (req, res) => {

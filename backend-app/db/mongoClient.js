@@ -13,13 +13,6 @@ async function connectDB() {
 
         // взаимодействие с базой данных
         db = client.db(nameDB);
-        // const coll = db.collection("books");
-
-        // const cursor = coll.find();
-
-        // for await (const el of cursor) {
-        //     console.log(el);
-        // }
     } catch (err) {
         console.dir(err);
     } finally {
