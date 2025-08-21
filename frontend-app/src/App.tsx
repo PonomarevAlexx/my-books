@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "./hooks/hooks";
 import { fetchBooks } from "./store/slices/books-slice";
+import { BookList } from "./components/bookList/BookList";
 
 function App() {
     const dispatch = useAppDispatch();
@@ -9,7 +10,11 @@ function App() {
         dispatch(fetchBooks());
     }, [dispatch]);
 
-    return <>Hello</>;
+    return (
+        <>
+            <BookList />
+        </>
+    );
 }
 
 export default App;
