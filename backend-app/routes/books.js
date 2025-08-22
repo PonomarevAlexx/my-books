@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Получить все книги
 router.get("/", async (req, res) => {
-    const books = await getDB().collection("books").find().toArray();
+    const books = await getDB().collection("books").find().project({ title: 1, author: 1, cover: 1 }).toArray();
     res.json(books);
 });
 

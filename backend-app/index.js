@@ -12,10 +12,10 @@ const PORT = process.env.PORT || 3000;
 async function startServer() {
     try {
         await connectDB();
-        app.use("/api/books", booksRouter);
+        app.use("/", booksRouter);
 
         app.listen(PORT, () => {
-            console.log(`🚀 Server running at http://localhost:${PORT}/api/books`);
+            console.log(`🚀 Server running at http://localhost:${PORT}/`);
         });
     } catch (err) {
         console.error("❌ Failed to start server:", err);

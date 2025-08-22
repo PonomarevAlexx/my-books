@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppDispatch } from "./hooks/hooks";
 import { fetchBooks } from "./store/slices/books-slice";
 import { BookList } from "./components/bookList/BookList";
+import { BrowserRouter } from "react-router";
 
 function App() {
     const dispatch = useAppDispatch();
@@ -12,7 +13,9 @@ function App() {
 
     return (
         <>
-            <BookList />
+            <BrowserRouter>
+                <BookList />
+            </BrowserRouter>
         </>
     );
 }

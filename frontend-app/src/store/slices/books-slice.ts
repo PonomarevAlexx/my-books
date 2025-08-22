@@ -2,7 +2,7 @@ import type { RootState } from "../store";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // const LOCAL_URL = "http://localhost:3000/books";
-const URL = "http://localhost:3000/api/books";
+const URL = "http://localhost:3000/";
 
 type Status = {
     LOADING: "loading";
@@ -11,33 +11,29 @@ type Status = {
 };
 
 export type Book = {
-    _id: Id;
+    _id: string;
     title: string[];
     author: Author[];
-    year: number;
-    quantityOfPages: number;
-    isRead: boolean;
-    bookSeries: BookSeries;
-    publisher: string;
-    ISBN: string;
+    // year: number;
+    // quantityOfPages: number;
+    // isRead: boolean;
+    // bookSeries: BookSeries;
+    // publisher: string;
+    // ISBN: string;
     cover: string;
-    idAuthor: string;
-    description: string;
+    // idAuthor: string;
+    // description: string;
 };
 
-type Id = {
-    $oid: string;
-};
-
-type BookSeries = {
-    name: string;
-    _id: string;
-};
+// type BookSeries = {
+//     name: string;
+//     _id: string;
+// };
 
 type Author = {
     name: string;
-    _id: string
-}
+    _id: string;
+};
 
 type State = {
     bookList: Book[];

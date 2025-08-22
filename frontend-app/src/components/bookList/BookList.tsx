@@ -10,7 +10,8 @@ export const BookList: React.FC = () => {
         <div className="bookList">
             {bookList.map((el) => (
                 <BookItem
-                    key={el._id.$oid}
+                    id={el._id}
+                    key={el._id}
                     cover={el.cover}
                     title={el.title.map((el) => "«" + el + "»").join(", ")}
                     author={el.author[0].name}
