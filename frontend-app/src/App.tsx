@@ -1,21 +1,14 @@
-import { useEffect } from "react";
-import { useAppDispatch } from "./hooks/hooks";
-import { fetchBooks } from "./store/slices/books-slice";
-import { BookList } from "./components/bookList/BookList";
-import { BrowserRouter } from "react-router";
+import { BooksPage } from "./pages/BooksPage";
+import { BookInfoPage } from "./pages/BookInfoPage";
+import { Routes, Route } from "react-router";
 
 function App() {
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        dispatch(fetchBooks());
-    }, [dispatch]);
-
     return (
         <>
-            <BrowserRouter>
-                <BookList />
-            </BrowserRouter>
+            <Routes>
+                <Route path={"/books"} element={<BooksPage />} />
+                <Route path={"/books/:id"} element={<BookInfoPage />} />
+            </Routes>
         </>
     );
 }
