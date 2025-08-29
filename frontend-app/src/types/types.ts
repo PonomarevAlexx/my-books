@@ -4,12 +4,30 @@ export type Status = {
     REJECTED: "rejected";
 };
 
-export type Author = {
+export interface Author {
     name: string;
     _id: string;
-};
+}
 
-export type BookSeries = {
+export interface BookSeries {
     name: string;
     _id: string;
-};
+}
+
+export interface Book {
+    _id: string;
+    title: string[];
+    author: Author[];
+    year: number;
+    bookSeries: BookSeries;
+    quantityOfPages: number;
+    publisher: string;
+    ISBN: string;
+    cover: string;
+    isRead: boolean;
+    section: string;
+    bookBinding: string;
+    paper: string;
+    weight: number;
+    description: string;
+}

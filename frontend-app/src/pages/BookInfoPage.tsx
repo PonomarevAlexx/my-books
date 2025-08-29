@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { fetchBook, selectBook } from "../store/slices/book-slice";
 import { useEffect } from "react";
+import { BookInfo } from "../components/bookInfo/BookInfo";
 
 export const BookInfoPage = () => {
     const dispatch = useAppDispatch();
@@ -14,7 +15,6 @@ export const BookInfoPage = () => {
     }, [dispatch, id]);
 
     const book = useAppSelector(selectBook);
-    console.log(book._id);
 
-    return <div>Book Info Page</div>;
+    return <BookInfo book={book} />;
 };

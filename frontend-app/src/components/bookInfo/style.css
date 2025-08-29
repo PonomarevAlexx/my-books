@@ -1,0 +1,16 @@
+.bookInfo {
+    margin-top: 50px;
+}
+
+.bookInfo-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.bookInfo-img {
+    width: 33%;;
+}
+
+.bookInfo-img img {
+    width: 90%;
+}

@@ -1,23 +1,8 @@
 import type { RootState } from "../store";
-import type { Author, BookSeries, Status } from "../../types/types";
+import type { Status, Book } from "../../types/types";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const URL = "http://localhost:3000/books";
-
-type Book = {
-    _id: string;
-    title: string[];
-    author: Author[];
-    year: number;
-    quantityOfPages: number;
-    isRead: boolean;
-    bookSeries: BookSeries;
-    publisher: string;
-    ISBN: string;
-    cover: string;
-    idAuthor: string;
-    description: string;
-};
 
 type State = {
     book: Book;
@@ -43,7 +28,10 @@ const initialState: State = {
         publisher: "",
         ISBN: "",
         cover: "",
-        idAuthor: "",
+        section: "",
+        bookBinding: "",
+        paper: "",
+        weight: 0,
         description: "string",
     },
     status: "",
