@@ -7,6 +7,7 @@ a {
     flex-direction: column;
     justify-content: space-between;
     width: 280px;
+    height: 530px;
     border: 1px solid rgba(116, 155, 194, 0.2);
     border-radius: 10px;
 }

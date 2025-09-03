@@ -2,15 +2,54 @@
     margin-top: 50px;
 }
 
+.bookInfo h4 {
+    color: rgb(70, 130, 169);
+    font-size: 22px;
+}
+
+.bookInfo-title {
+    font-size: 32px;
+    color: rgb(70, 130, 169);
+}
+
 .bookInfo-row {
     display: flex;
     flex-direction: row;
 }
 
 .bookInfo-img {
-    width: 33%;;
+    width: 33%;
 }
 
 .bookInfo-img img {
+    margin: 15px;
     width: 90%;
+    border-radius: 10px;
+}
+
+.bookInfo-characteristic {
+    margin-left: 20px;
+    width: calc(100% - (33% + 30px + 20px));
+}
+
+.bookInfo-characteristic-item {
+    font-style: italic;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: rgb(70, 130, 169);
+    margin-bottom: 10px;
+}
+
+.bookInfo-characteristic-item-text {
+    width: 45%;
+}
+
+.bookInfo-about {
+    margin-top: 100px;
+}
+
+.bookInfo-about p {
+    font-size: 20px;
 }
