@@ -7,15 +7,15 @@ interface BookInfo {
 }
 
 export const BookInfo: React.FC<BookInfo> = ({ book }) => {
-    const firstAuthor = book.author[0].name;
+    // const firstAuthor = book.author[0].name;
     const author = book.author.map((el) => el.name).join(", ");
     const title = book.title.map(el => `"${el}"`).join(", ");
     const bookSeries = book.bookSeries.name;
-    const description = book.description.split("\n").map((el) => <p>{el}</p>);
+    const description = book.description.split("\n").map((el, i) => <p key={i}>{el}</p>);
 
     return (
         <div className="bookInfo">
-            <h3 className="bookInfo-title">{`${firstAuthor}: ${title}`}</h3>
+            <h3 className="bookInfo-title">{`${author}: ${title}`}</h3>
             <div className="bookInfo-row">
                 <div className="bookInfo-img">
                     <img src={book.cover || imgNotCover} alt={title} />

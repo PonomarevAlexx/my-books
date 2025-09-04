@@ -9,7 +9,7 @@ type Book = {
     author: string;
 };
 
-export const BookItem: React.FC<Book> = ({ cover, title, author, id }: Book) => {
+export const BookItem: React.FC<Book> = ({ cover, title, author, id }) => {
     return (
         <Link to={`/books/${id}`}>
             <div className="bookItem">
