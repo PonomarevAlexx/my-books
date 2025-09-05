@@ -63,3 +63,7 @@ export const booksReducer = booksSlice.reducer;
 export const selectAllBooks = (state: RootState): Book[] => {
     return state.books.bookList;
 };
+
+export const selectStatusLoading = (state: RootState) => {
+    return state.books.status;
+};

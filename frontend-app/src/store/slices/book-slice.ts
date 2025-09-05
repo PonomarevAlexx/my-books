@@ -72,3 +72,7 @@ export const bookReducer = bookSlice.reducer;
 export const selectBook = (state: RootState): Book => {
     return state.book.book;
 };
+
+export const selectStatusLoading = (state: RootState) => {
+    return state.book.status;
+};
