@@ -3,7 +3,7 @@ import { useAppSelector } from "../../hooks/hooks";
 import { BookItem } from "../bookItem/BookItem";
 import "./style.css";
 
-export const BookList: React.FC = () => {
+const BookList: React.FC = () => {
     const bookList = useAppSelector(selectAllBooks);
 
     return (
@@ -20,3 +20,5 @@ export const BookList: React.FC = () => {
         </div>
     );
 };
+
+export default BookList;

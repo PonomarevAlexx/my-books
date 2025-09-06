@@ -6,10 +6,10 @@ interface BookInfo {
     book: Book;
 }
 
-export const BookInfo: React.FC<BookInfo> = ({ book }) => {
+const BookInfo: React.FC<BookInfo> = ({ book }) => {
     // const firstAuthor = book.author[0].name;
     const author = book.author.map((el) => el.name).join(", ");
-    const title = book.title.map(el => `"${el}"`).join(", ");
+    const title = book.title.map((el) => `"${el}"`).join(", ");
     const bookSeries = book.bookSeries.name;
     const description = book.description.split("\n").map((el, i) => <p key={i}>{el}</p>);
 
@@ -72,3 +72,5 @@ export const BookInfo: React.FC<BookInfo> = ({ book }) => {
         </div>
     );
 };
+
+export default BookInfo;

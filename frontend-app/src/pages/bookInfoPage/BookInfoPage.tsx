@@ -1,11 +1,10 @@
 import { useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchBook, selectBook } from "../../store/slices/book-slice";
-import { useEffect } from "react";
-import { BookInfo } from "../../components/bookInfo/BookInfo";
+import { Suspense, useEffect } from "react";
 import { Layout } from "../../components/layout/Layout";
-import { selectStatusLoading } from "../../store/slices/book-slice";
 import { PageLoader } from "../../components/pageLoader/PageLoader";
+import { BookInfoLazy } from "../../components/bookInfo/BookInfo.lazy";
 
 const BookInfoPage = () => {
     const dispatch = useAppDispatch();
@@ -18,11 +17,14 @@ const BookInfoPage = () => {
     }, [dispatch, id]);
 
     const book = useAppSelector(selectBook);
-    const status = useAppSelector(selectStatusLoading);
 
     return (
         <>
-            <Layout>{status === "loading" ? <PageLoader /> : <BookInfo book={book} />}</Layout>
+            <Suspense fallback={<PageLoader />}>
+                <Layout>
+                    <BookInfoLazy book={book} />
+                </Layout>
+            </Suspense>
         </>
     );
 };

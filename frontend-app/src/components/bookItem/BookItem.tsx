@@ -14,7 +14,7 @@ export const BookItem: React.FC<Book> = ({ cover, title, author, id }) => {
         <Link to={`/books/${id}`}>
             <div className="bookItem">
                 <div className="bookItem-img">
-                    <img src={cover || imgNotCover} alt={title}></img>
+                    <img src={cover || imgNotCover} alt={title} loading="lazy"></img>
                 </div>
                 <div className="bookItem-text">
                     <p className="bookItem-author">{author}</p>

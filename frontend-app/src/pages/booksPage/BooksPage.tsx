@@ -1,9 +1,9 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { fetchBooks, selectStatusLoading } from "../../store/slices/books-slice";
-import { BookList } from "../../components/bookList/BookList";
+import { Suspense, useEffect } from "react";
+import { useAppDispatch } from "../../hooks/hooks";
+import { fetchBooks } from "../../store/slices/books-slice";
 import { Layout } from "../../components/layout/Layout";
 import { PageLoader } from "../../components/pageLoader/PageLoader";
+import { BookListLazy } from "../../components/bookList/BookList.lazy";
 
 const BooksPage = () => {
     const dispatch = useAppDispatch();
@@ -12,11 +12,13 @@ const BooksPage = () => {
         dispatch(fetchBooks());
     }, [dispatch]);
 
-    const status = useAppSelector(selectStatusLoading);
-
     return (
         <>
-            <Layout>{status === "loading" ? <PageLoader /> : <BookList />}</Layout>
+            <Suspense fallback={<PageLoader />}>
+                <Layout>
+                    <BookListLazy />
+                </Layout>
+            </Suspense>
         </>
     );
 };
