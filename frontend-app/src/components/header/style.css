@@ -22,11 +22,15 @@
 }
 
 .Header-logo-link {
+    text-decoration: none;
+    padding: 15px;
+    cursor: pointer;
     font-size: 26px;
     color: rgba(255, 255, 255, 1);
 }
 
 .Header-nav-item {
+    text-decoration: none;
     font-size: 18px;
     padding: 20px;
     color: rgba(255, 255, 255, 1);
