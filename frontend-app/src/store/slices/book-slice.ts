@@ -1,19 +1,12 @@
 import type { RootState } from "../store";
-import type { Status, Book } from "../../types/types";
+import type { Book } from "../../types/types";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-const URL = "http://localhost:3000/books";
+import { URL, STATUS_LOADING } from "../../constants/constants";
 
 type State = {
     book: Book;
     status: string;
     error: string;
-};
-
-const STATUS_LOADING: Status = {
-    LOADING: "loading",
-    RESOLVED: "resolved",
-    REJECTED: "rejected",
 };
 
 const initialState: State = {
@@ -39,7 +32,7 @@ const initialState: State = {
 };
 
 export const fetchBook = createAsyncThunk("@book/fetchBooks", async (id: string) => {
-    const response = await fetch(`${URL}/${id}`);
+    const response = await fetch(`${URL}/books/${id}`);
 
     return await response.json();
 });

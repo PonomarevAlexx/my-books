@@ -23,4 +23,10 @@ router.get("/books/:id", async (req, res) => {
     res.json(book);
 });
 
+// Получить всех авторов
+router.get("/authors", async (req, res) => {
+    const authors = await getDB().collection("authors").find().project({ name: 1, photo: 1 }).toArray();
+    res.json(authors);
+});
+
 module.exports = router;

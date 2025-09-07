@@ -14,7 +14,7 @@ export const Header = () => {
                     <NavLink className="Header-nav-item" to="/books">
                         Книги
                     </NavLink>
-                    <NavLink className="Header-nav-item" to="/books">
+                    <NavLink className="Header-nav-item" to="/authors">
                         Авторы
                     </NavLink>
                     <NavLink className="Header-nav-item" to="/books">
