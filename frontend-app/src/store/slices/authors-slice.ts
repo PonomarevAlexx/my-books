@@ -2,7 +2,19 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { STATUS_LOADING, URL } from "../../constants/constants";
 import type { RootState } from "../store";
 
-const initialState = {
+interface State {
+    authorsList: Authors[];
+    status: string;
+    error: string;
+}
+
+interface Authors {
+    _id: string;
+    name: string;
+    photo: string;
+}
+
+const initialState: State = {
     authorsList: [],
     status: "",
     error: "",
