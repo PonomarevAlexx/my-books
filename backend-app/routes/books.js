@@ -29,4 +29,15 @@ router.get("/authors", async (req, res) => {
     res.json(authors);
 });
 
+// Получить автора по ID
+router.get("/authors/:id", async (req, res) => {
+    const { id } = req.params;
+
+    const authors = await getDB()
+        .collection("authors")
+        .findOne({ _id: new ObjectId(id) });
+
+    res.json(authors);
+});
+
 module.exports = router;

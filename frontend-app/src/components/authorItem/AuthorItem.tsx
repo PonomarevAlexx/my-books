@@ -13,7 +13,7 @@ export const AuthorItem: React.FC<AuthorItem> = ({ id, cover, name }) => {
         <Link className="AuthorItem-link" to={`/authors/${id}`}>
             <div className="AuthorItem">
                 <div className="AuthorItem-image">
-                    <img src={cover} alt={name} />
+                    <img src={cover} alt={name} loading="lazy" />
                 </div>
                 <div className="AuthorItem-text">
                     <p className="AuthorItem-name">{name}</p>

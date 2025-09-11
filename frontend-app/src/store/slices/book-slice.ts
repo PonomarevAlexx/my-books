@@ -4,29 +4,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { URL, STATUS_LOADING } from "../../constants/constants";
 
 type State = {
-    book: Book;
+    book: Book | null;
     status: string;
     error: string;
 };
 
 const initialState: State = {
-    book: {
-        _id: "",
-        title: [],
-        author: [],
-        year: 0,
-        quantityOfPages: 0,
-        isRead: false,
-        bookSeries: { name: "", _id: "" },
-        publisher: "",
-        ISBN: "",
-        cover: "",
-        section: "",
-        bookBinding: "",
-        paper: "",
-        weight: 0,
-        description: "string",
-    },
+    book: null,
     status: "",
     error: "",
 };
@@ -62,7 +46,7 @@ export const bookSlice = createSlice({
 
 export const bookReducer = bookSlice.reducer;
 
-export const selectBook = (state: RootState): Book => {
+export const selectBook = (state: RootState) => {
     return state.book.book;
 };
 

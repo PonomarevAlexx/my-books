@@ -6,6 +6,7 @@ import { PageLoader } from "./components/pageLoader/PageLoader";
 import { Header } from "./components/header/Header";
 import { Footer } from "./components/footer/Footer";
 import { AuthorsPageLazy } from "./pages/authorsPage/AuthorsPage.lazy";
+import { AuthorPageLazy } from "./pages/authorPage/AuthorPage.lazy";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                     <Route path={"/books"} element={<BooksPageLazy />} />
                     <Route path={"/books/:id"} element={<BookInfoPageLazy />} />
                     <Route path={"/authors"} element={<AuthorsPageLazy />} />
+                    <Route path={"/authors/:id"} element={<AuthorPageLazy />} />
                 </Routes>
             </Suspense>
             <Footer />

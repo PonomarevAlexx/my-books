@@ -31,3 +31,20 @@ export interface Book {
     weight: number;
     description: string;
 }
+
+export interface AuthorInfo {
+    _id: string;
+    name: string;
+    works: Work[];
+    birth: string;
+    death: string;
+    country: string;
+    language: string;
+    photo: string;
+    info: string;
+}
+
+export interface Work {
+    title: string;
+    _id: string;
+}

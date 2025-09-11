@@ -1,4 +1,5 @@
 .Layout {
     width: 1188px;
-    margin: 50px auto;
+    min-height: calc(100vh - 300px);
+    margin: 0 auto;
 }
