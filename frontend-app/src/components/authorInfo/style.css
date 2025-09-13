@@ -1,0 +1,62 @@
+.authorInfo {
+    padding: 50px 0;
+}
+
+.authorInfo-name {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+    font-size: 32px;
+    color: rgb(70, 130, 169);
+}
+
+.authorInfo-row {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+}
+
+.authorInfo-img {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.authorInfo-img img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.authorInfo h4 {
+    color: rgb(70, 130, 169);
+    font-size: 22px;
+}
+
+.authorInfo-characteristics {
+    width: 100%;
+}
+
+.authorInfo-characteristics-item {
+    font-style: italic;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: rgb(70, 130, 169);
+    margin-bottom: 10px;
+}
+
+.authorInfo-characteristics-item-text {
+    width: 55%;
+}
+
+.authorInfo-info {
+    margin-top: 100px;
+}
+
+.authorInfo-info p {
+    font-size: 20px;
+}

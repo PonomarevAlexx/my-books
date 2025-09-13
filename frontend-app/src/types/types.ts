@@ -4,7 +4,7 @@ export type Status = {
     REJECTED: "rejected";
 };
 
-export interface Author {
+export interface AuthorFromBook {
     name: string;
     _id: string;
 }
@@ -17,7 +17,7 @@ export interface BookSeries {
 export interface Book {
     _id: string;
     title: string[];
-    author: Author[];
+    author: AuthorFromBook[];
     year: number;
     bookSeries: BookSeries;
     quantityOfPages: number;
@@ -32,7 +32,7 @@ export interface Book {
     description: string;
 }
 
-export interface AuthorInfo {
+export interface Author {
     _id: string;
     name: string;
     works: Work[];

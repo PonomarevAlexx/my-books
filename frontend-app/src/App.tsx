@@ -6,7 +6,7 @@ import { PageLoader } from "./components/pageLoader/PageLoader";
 import { Header } from "./components/header/Header";
 import { Footer } from "./components/footer/Footer";
 import { AuthorsPageLazy } from "./pages/authorsPage/AuthorsPage.lazy";
-import { AuthorPageLazy } from "./pages/authorPage/AuthorPage.lazy";
+import { AuthorPageLazy } from "./pages/authorInfoPage/AuthorInfoPage.lazy";
 
 function App() {
     return (

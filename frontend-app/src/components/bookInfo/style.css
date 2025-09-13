@@ -32,7 +32,8 @@
     width: calc(100% - (33% + 30px + 20px));
 }
 
-.bookInfo-characteristic-item {
+.bookInfo-characteristic-item,
+.bookInfo-characteristic-item-text a {
     font-style: italic;
     font-size: 18px;
     display: flex;
@@ -40,6 +41,11 @@
     justify-content: space-between;
     color: rgb(70, 130, 169);
     margin-bottom: 10px;
+}
+
+.bookInfo-characteristic-item-text a {
+    text-decoration: none;
+    margin: 0;
 }
 
 .bookInfo-characteristic-item-text {

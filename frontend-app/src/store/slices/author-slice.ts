@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { AuthorInfo } from "../../types/types";
+import type { Author } from "../../types/types";
 import { STATUS_LOADING, URL } from "../../constants/constants";
 import type { RootState } from "../store";
 
 interface State {
-    author: AuthorInfo | null;
+    author: Author | null;
     status: string;
     error: string;
 }
@@ -48,4 +48,8 @@ export const authorReducer = authorSlice.reducer;
 
 export const selectAuthor = (state: RootState) => {
     return state.author.author;
+};
+
+export const selectStatus = (state: RootState) => {
+    return state.author.status;
 };
