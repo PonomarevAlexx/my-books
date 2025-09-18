@@ -1,7 +1,8 @@
 import type { Book } from "../../types/types";
 import "./style.css";
 import imgNotCover from "../../img/Not_image_book.png";
-import { Link } from "react-router";
+import { BookInfoAuthorLinks } from "../bookInfoAuthorLinks/BookInfoAuthorLinks";
+// import { Link } from "react-router";
 
 interface BookInfo {
     book: Book;
@@ -9,7 +10,12 @@ interface BookInfo {
 
 const BookInfo: React.FC<BookInfo> = ({ book }) => {
     const firstAuthor = book.author[0].name;
-    const author = book.author.map((el) => el.name).join(", ");
+    // const authorLink = book.author.map((el, i) => (
+    //     <span key={el._id || i}>
+    //         {el._id ? <Link to={`/authors/${el._id}`}>{el.name}</Link> : el.name}
+    //         {i < book.author.length - 1 && ",\u00A0"}
+    //     </span>
+    // ));
     const title = book.title.map((el) => `"${el}"`).join(", ");
     const bookSeries = book.bookSeries.name;
     const description = book.description.split("\n").map((el, i) => <p key={i}>{el}</p>);
@@ -26,9 +32,9 @@ const BookInfo: React.FC<BookInfo> = ({ book }) => {
                     <div className="bookInfo-characteristic-item">
                         <div>Автор:</div>
                         <div className="bookInfo-characteristic-item-text">
-                            <Link to={`/authors/${book.author[0]._id}`}>{author}</Link>
-                            {/* Разобраться как сделать для каждого автора отдельную ссылку
-                            как в новой книге ужасов */}
+                            <div className="bookInfo-characteristic-links">
+                                {<BookInfoAuthorLinks author={book.author} />}
+                            </div>
                         </div>
                     </div>
                     <div className="bookInfo-characteristic-item">

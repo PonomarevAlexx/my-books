@@ -32,8 +32,7 @@
     width: calc(100% - (33% + 30px + 20px));
 }
 
-.bookInfo-characteristic-item,
-.bookInfo-characteristic-item-text a {
+.bookInfo-characteristic-item{
     font-style: italic;
     font-size: 18px;
     display: flex;
@@ -46,10 +45,22 @@
 .bookInfo-characteristic-item-text a {
     text-decoration: none;
     margin: 0;
+    color: rgb(70, 130, 169);
 }
 
 .bookInfo-characteristic-item-text {
     width: 45%;
+    /* color: rgba(70, 130, 169, 0.8); */
+}
+
+.bookInfo-characteristic-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.bookInfo-characteristic-links span{
+    color: rgba(70, 130, 169, 0.6);
 }
 
 .bookInfo-about {
