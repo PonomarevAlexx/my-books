@@ -2,23 +2,15 @@ import type { Book } from "../../types/types";
 import "./style.css";
 import imgNotCover from "../../img/Not_image_book.png";
 import { BookInfoAuthorLinks } from "../bookInfoAuthorLinks/BookInfoAuthorLinks";
-// import { Link } from "react-router";
-
+import { ReadMoreDescription } from "../readMoreDescription/ReadMoreDescription";
 interface BookInfo {
     book: Book;
 }
 
 const BookInfo: React.FC<BookInfo> = ({ book }) => {
     const firstAuthor = book.author[0].name;
-    // const authorLink = book.author.map((el, i) => (
-    //     <span key={el._id || i}>
-    //         {el._id ? <Link to={`/authors/${el._id}`}>{el.name}</Link> : el.name}
-    //         {i < book.author.length - 1 && ",\u00A0"}
-    //     </span>
-    // ));
     const title = book.title.map((el) => `"${el}"`).join(", ");
     const bookSeries = book.bookSeries.name;
-    const description = book.description.split("\n").map((el, i) => <p key={i}>{el}</p>);
 
     return (
         <div className="bookInfo">
@@ -78,7 +70,7 @@ const BookInfo: React.FC<BookInfo> = ({ book }) => {
             </div>
             <div className="bookInfo-about">
                 <h4>О книге</h4>
-                {description}
+                <ReadMoreDescription description={book.description} />
             </div>
         </div>
     );

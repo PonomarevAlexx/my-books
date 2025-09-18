@@ -1,0 +1,15 @@
+.ReadMore {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: rgb(70, 130, 169);
+    border: 1px solid rgb(116, 155, 194);
+    border-radius: 10px;
+}
+
+.ReadMore:hover {
+    background-color: rgb(70, 130, 169);
+    color: rgb(255, 255, 255);
+    transition: all 0.3s;
+}

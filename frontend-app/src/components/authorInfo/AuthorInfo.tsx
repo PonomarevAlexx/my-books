@@ -1,4 +1,5 @@
 import type { Author } from "../../types/types";
+import { ReadMoreDescription } from "../readMoreDescription/ReadMoreDescription";
 import "./style.css";
 
 interface AuthorInfo {
@@ -6,8 +7,6 @@ interface AuthorInfo {
 }
 
 const AuthorInfo: React.FC<AuthorInfo> = ({ author }) => {
-    const info = author.info.split("\n").map((el, i) => <p key={i}>{el}</p>);
-
     return (
         <div className="authorInfo">
             <h3 className="authorInfo-name">{author.name}</h3>
@@ -41,7 +40,7 @@ const AuthorInfo: React.FC<AuthorInfo> = ({ author }) => {
             </div>
             <div className="authorInfo-info">
                 <h4>Об Авторе</h4>
-                <div>{info}</div>
+                <ReadMoreDescription description={author.info} />
             </div>
         </div>
     );
