@@ -11,7 +11,7 @@ type Book = {
 
 export const BookItem: React.FC<Book> = ({ cover, title, author, id }) => {
     return (
-        <Link to={`/books/${id}`}>
+        <Link to={`/book/${id}`}>
             <div className="bookItem">
                 <div className="bookItem-img">
                     <img src={cover || imgNotCover} alt={title} loading="lazy"></img>

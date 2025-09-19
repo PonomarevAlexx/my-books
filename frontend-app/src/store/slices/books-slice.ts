@@ -3,6 +3,8 @@ import type { Author } from "../../types/types";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { URL, STATUS_LOADING } from "../../constants/constants";
 
+const LIMIT = 12;
+
 type Book = {
     _id: string;
     title: string[];
@@ -23,7 +25,7 @@ const initialState: State = {
 };
 
 export const fetchBooks = createAsyncThunk("@books/fetchBooks", async () => {
-    const response = await fetch(`${URL}/books`);
+    const response = await fetch(`${URL}/books/${LIMIT}`);
 
     return await response.json();
 });

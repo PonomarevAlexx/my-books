@@ -4,13 +4,20 @@ const { ObjectId } = require("mongodb");
 const router = express.Router();
 
 // Получить все книги
-router.get("/books", async (req, res) => {
-    const books = await getDB().collection("books").find().project({ title: 1, author: 1, cover: 1 }).toArray();
+router.get("/books/:limit", async (req, res) => {
+    const { limit } = req.params;
+    const books = await getDB()
+        .collection("books")
+        .find()
+        .project({ title: 1, author: 1, cover: 1 })
+        .limit(Number(limit))
+        .toArray();
+
     res.json(books);
 });
 
 // Получить книгу по ID
-router.get("/books/:id", async (req, res) => {
+router.get("/book/:id", async (req, res) => {
     const { id } = req.params;
 
     if (!ObjectId.isValid(id)) {

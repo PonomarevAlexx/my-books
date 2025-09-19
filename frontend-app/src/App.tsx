@@ -15,7 +15,7 @@ function App() {
             <Suspense fallback={<PageLoader />}>
                 <Routes>
                     <Route path={"/books"} element={<BooksPageLazy />} />
-                    <Route path={"/books/:id"} element={<BookInfoPageLazy />} />
+                    <Route path={"/book/:id"} element={<BookInfoPageLazy />} />
                     <Route path={"/authors"} element={<AuthorsPageLazy />} />
                     <Route path={"/authors/:id"} element={<AuthorPageLazy />} />
                 </Routes>

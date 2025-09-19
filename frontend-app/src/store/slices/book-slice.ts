@@ -15,8 +15,8 @@ const initialState: State = {
     error: "",
 };
 
-export const fetchBook = createAsyncThunk("@book/fetchBooks", async (id: string) => {
-    const response = await fetch(`${URL}/books/${id}`);
+export const fetchBook = createAsyncThunk("@book/fetchBook", async (id: string) => {
+    const response = await fetch(`${URL}/book/${id}`);
 
     return await response.json();
 });
