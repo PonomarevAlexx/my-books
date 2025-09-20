@@ -6,9 +6,22 @@ const router = express.Router();
 // Получить все книги
 router.get("/books/:limit", async (req, res) => {
     const { limit } = req.params;
+    const search = req.query.search || "";
+    let query = {};
+
+    if (search) {
+        query = {
+            $or: [
+                { title: { $regex: search, $options: "i" } },
+                { "author.name": { $regex: search, $options: "i" } },
+                // { "bookSeries.name": { $regex: search, $options: "i" } },
+            ],
+        };
+    }
+
     const books = await getDB()
         .collection("books")
-        .find()
+        .find(query)
         .project({ title: 1, author: 1, cover: 1 })
         .limit(Number(limit))
         .toArray();

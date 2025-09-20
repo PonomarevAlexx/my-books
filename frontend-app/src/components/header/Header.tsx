@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 import "./style.css";
+import { InputComponent } from "../inputComponent/Input";
 
 export const Header = () => {
     return (
@@ -10,6 +11,7 @@ export const Header = () => {
                         MyLibrary
                     </NavLink>
                 </div>
+                <InputComponent />
                 <nav className="Header-nav">
                     <NavLink className="Header-nav-item" to="/books">
                         Книги
