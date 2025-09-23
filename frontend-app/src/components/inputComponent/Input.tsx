@@ -1,22 +1,42 @@
+// import { useLocation, useSearchParams } from "react-router";
 import { useLocation } from "react-router";
-import "./style.css";
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
-import { useState } from "react";
 import { fetchBooks } from "../../store/slices/books-slice";
+import useDebouncedValue from "../../hooks/useDebouncedValue";
+import "./style.css";
 
 export const InputComponent = () => {
     const location = useLocation();
     const pathName = location.pathname;
     const dispatch = useAppDispatch();
     const [query, setQuery] = useState("");
+    const debouncedQuery = useDebouncedValue(query, 500);
+    // const [searchParams, setSearchParams] = useSearchParams();
+    // const limit = searchParams.get("limit") || "16";
 
-    const search = (text: string) => {
-        if (text.trim()) {
+    // useEffect(() => {
+    //     if (debouncedQuery) {
+    //         setSearchParams({ search: debouncedQuery, limit });
+    //     } else {
+    //         setSearchParams({ limit }); // если строка пустая
+    //     }
+    // }, [debouncedQuery, limit, setSearchParams]);
+
+    useEffect(() => {
+        if (debouncedQuery.trim()) {
             if (pathName === "/books") {
-                dispatch(fetchBooks(text));
-                setQuery("");
+                dispatch(fetchBooks(debouncedQuery));
+            }
+        } else {
+            if (pathName === "/books") {
+                dispatch(fetchBooks(""));
             }
         }
+    }, [debouncedQuery, dispatch, pathName]);
+
+    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,18 +45,17 @@ export const InputComponent = () => {
 
     if (pathName === "/books" || pathName === "/authors") {
         return (
-            <div className="InputComponent" onSubmit={() => search(query)}>
+            <form className="InputComponent" onSubmit={handleSearch}>
                 <input
                     className="InputComponent-input"
-                    placeholder="Введите автора или название произведения"
+                    placeholder={
+                        pathName === "/books" ? "Введите имя автора или название произведения" : "Введите имя автора"
+                    }
                     type="text"
                     value={query}
                     onChange={handleChange}
                 />
-                <button onClick={() => search(query)} className="InputComponent-btn">
-                    Поиск
-                </button>
-            </div>
+            </form>
         );
     }
 };

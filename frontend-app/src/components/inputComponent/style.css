@@ -27,19 +27,3 @@
     color: rgba(255, 255, 255, 0.7);
     font-size: 16px;
 }
-
-.InputComponent-btn {
-    padding: 0 20px;
-    font-size: 16px;
-    background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: rgba(255, 255, 255, 1);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.InputComponent-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s;
-}
