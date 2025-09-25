@@ -1,6 +1,7 @@
 import type React from "react";
-import "./style.css";
 import { Link } from "react-router";
+import "./style.css";
+import noPhoto from "../../img/noPhoto.png";
 
 interface AuthorItem {
     id: string;
@@ -13,7 +14,7 @@ export const AuthorItem: React.FC<AuthorItem> = ({ id, cover, name }) => {
         <Link className="AuthorItem-link" to={`/authors/${id}`}>
             <div className="AuthorItem">
                 <div className="AuthorItem-image">
-                    <img src={cover} alt={name} loading="lazy" />
+                    <img src={cover ? cover : noPhoto} alt={name} loading="lazy" />
                 </div>
                 <div className="AuthorItem-text">
                     <p className="AuthorItem-name">{name}</p>

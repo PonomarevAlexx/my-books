@@ -11,6 +11,7 @@ a {
     border: 1px solid rgba(116, 155, 194, 0.2);
     border-radius: 10px;
     align-items: center;
+    transition: all 0.3s;
 }
 
 .bookItem:hover {

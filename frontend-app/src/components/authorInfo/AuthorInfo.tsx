@@ -1,6 +1,7 @@
 import type { Author } from "../../types/types";
 import { ReadMoreDescription } from "../readMoreDescription/ReadMoreDescription";
 import "./style.css";
+import noPhoto from "../../img/noPhoto.png";
 
 interface AuthorInfo {
     author: Author;
@@ -12,7 +13,7 @@ const AuthorInfo: React.FC<AuthorInfo> = ({ author }) => {
             <h3 className="authorInfo-name">{author.name}</h3>
             <div className="authorInfo-row">
                 <div className="authorInfo-img">
-                    <img src={author.photo} alt={author.name} />
+                    <img src={author.photo ? author.photo : noPhoto} alt={author.name} />
                 </div>
                 <div className="authorInfo-characteristics">
                     <h4>Характеристики</h4>
