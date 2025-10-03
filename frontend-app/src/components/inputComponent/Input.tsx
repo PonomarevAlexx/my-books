@@ -2,7 +2,7 @@
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
-import { fetchBooks } from "../../store/slices/books-slice";
+import { setSerchQuery } from "../../store/slices/books-slice";
 import useDebouncedValue from "../../hooks/useDebouncedValue";
 import "./style.css";
 
@@ -24,14 +24,8 @@ export const InputComponent = () => {
     // }, [debouncedQuery, limit, setSearchParams]);
 
     useEffect(() => {
-        if (debouncedQuery.trim()) {
-            if (pathName === "/books") {
-                dispatch(fetchBooks(debouncedQuery));
-            }
-        } else {
-            if (pathName === "/books") {
-                dispatch(fetchBooks(""));
-            }
+        if (pathName === "/books") {
+            dispatch(setSerchQuery(debouncedQuery.trim()));
         }
     }, [debouncedQuery, dispatch, pathName]);
 

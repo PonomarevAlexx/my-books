@@ -16,24 +16,39 @@ type State = {
     bookList: Book[];
     status: string;
     error: string;
+    limit: number;
+    serchQuery: string;
 };
 
 const initialState: State = {
     bookList: [],
     status: "",
     error: "",
+    limit: LIMIT,
+    serchQuery: "",
 };
 
-export const fetchBooks = createAsyncThunk("@books/fetchBooks", async (serchQuery: string = "") => {
-    const response = await fetch(`${URL}/books/${LIMIT}?search=${serchQuery}`);
+export const fetchBooks = createAsyncThunk(
+    "@books/fetchBooks",
+    async ({ serchQuery, limit }: { serchQuery?: string; limit?: number }) => {
+        const response = await fetch(`${URL}/books/${limit}?search=${serchQuery}`);
 
-    return await response.json();
-});
+        return await response.json();
+    }
+);
 
 export const booksSlice = createSlice({
     name: "books",
     initialState,
-    reducers: {},
+    reducers: {
+        increaseLimit: (state) => {
+            state.limit += LIMIT;
+        },
+        setSerchQuery: (state, action) => {
+            state.serchQuery = action.payload;
+            state.limit = LIMIT;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchBooks.pending, (state) => {
             state.status = STATUS_LOADING.LOADING;
@@ -62,3 +77,13 @@ export const selectAllBooks = (state: RootState): Book[] => {
 export const selectStatusLoading = (state: RootState) => {
     return state.books.status;
 };
+
+export const selectLimit = (state: RootState) => {
+    return state.books.limit;
+};
+
+export const selectSearchQuery = (state: RootState) => {
+    return state.books.serchQuery;
+};
+
+export const { increaseLimit, setSerchQuery } = booksSlice.actions;
