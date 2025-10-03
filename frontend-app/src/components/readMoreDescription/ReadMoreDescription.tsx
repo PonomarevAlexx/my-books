@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./style.css";
+import { Button } from "../button/Button";
 
 interface Description {
     description: string;
@@ -19,9 +20,11 @@ export const ReadMoreDescription: React.FC<Description> = ({ description }) => {
         <>
             {description.length < 500 || showMore ? fullDescription : shortDescription}
             {description.length > 500 && (
-                <button className="ReadMore" onClick={toggleReadMore}>
-                    {!showMore ? "Показать больше" : "Показать меньше"}
-                </button>
+                <Button
+                    style="Button"
+                    text={!showMore ? "Показать больше" : "Показать меньше"}
+                    handler={toggleReadMore}
+                />
             )}
         </>
     );

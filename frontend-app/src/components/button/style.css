@@ -1,7 +1,13 @@
 .Button {
     display: flex;
+}
+
+.Button_center {
     justify-content: center;
     align-items: center;
+}
+
+.Button_mb50 {
     margin-bottom: 50px;
 }
 

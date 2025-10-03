@@ -25,7 +25,7 @@ const BooksPage = () => {
             <Suspense fallback={<PageLoader />}>
                 <Layout>
                     <BookListLazy />
-                    <Button text="Показать больше" handler={handleLimit} />
+                    <Button style="Button Button_center Button_mb50" text="Показать больше" handler={handleLimit} />
                 </Layout>
             </Suspense>
         </>
