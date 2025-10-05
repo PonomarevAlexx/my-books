@@ -18,6 +18,7 @@ type State = {
     error: string;
     limit: number;
     serchQuery: string;
+    length: number;
 };
 
 const initialState: State = {
@@ -26,6 +27,7 @@ const initialState: State = {
     error: "",
     limit: LIMIT,
     serchQuery: "",
+    length: 0,
 };
 
 export const fetchBooks = createAsyncThunk(
@@ -56,8 +58,9 @@ export const booksSlice = createSlice({
         });
         builder.addCase(fetchBooks.fulfilled, (state, action) => {
             state.status = STATUS_LOADING.RESOLVED;
-            state.bookList = action.payload;
-            console.log(state.bookList);
+            state.bookList = action.payload.books;
+            state.length = action.payload.length;
+            console.log(state.bookList, state.length);
         });
         builder.addCase(fetchBooks.rejected, (state, action) => {
             state.status = STATUS_LOADING.REJECTED;
@@ -84,6 +87,10 @@ export const selectLimit = (state: RootState) => {
 
 export const selectSearchQuery = (state: RootState) => {
     return state.books.serchQuery;
+};
+
+export const selectLengthBooksList = (state: RootState) => {
+    return state.books.length;
 };
 
 export const { increaseLimit, setSerchQuery } = booksSlice.actions;

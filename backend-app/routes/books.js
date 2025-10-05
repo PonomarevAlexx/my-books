@@ -19,6 +19,7 @@ router.get("/books/:limit", async (req, res) => {
         };
     }
 
+    const length = await getDB().collection("books").countDocuments(query);
     const books = await getDB()
         .collection("books")
         .find(query)
@@ -26,7 +27,7 @@ router.get("/books/:limit", async (req, res) => {
         .limit(Number(limit))
         .toArray();
 
-    res.json(books);
+    res.json({books, length});
 });
 
 // Получить книгу по ID

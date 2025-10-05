@@ -1,6 +1,6 @@
 import { Suspense, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { fetchBooks, selectSearchQuery } from "../../store/slices/books-slice";
+import { fetchBooks, selectLengthBooksList, selectSearchQuery } from "../../store/slices/books-slice";
 import { Layout } from "../../components/layout/Layout";
 import { PageLoader } from "../../components/pageLoader/PageLoader";
 import { BookListLazy } from "../../components/bookList/BookList.lazy";
@@ -11,6 +11,7 @@ const BooksPage = () => {
     const dispatch = useAppDispatch();
     const limit = useAppSelector(selectLimit);
     const searchQuery = useAppSelector(selectSearchQuery);
+    const lengthBooksList = useAppSelector(selectLengthBooksList);
 
     useEffect(() => {
         dispatch(fetchBooks({ serchQuery: searchQuery, limit }));
@@ -25,7 +26,9 @@ const BooksPage = () => {
             <Suspense fallback={<PageLoader />}>
                 <Layout>
                     <BookListLazy />
-                    <Button style="Button Button_center Button_mb50" text="Показать больше" handler={handleLimit} />
+                    {lengthBooksList > limit && (
+                        <Button style="Button Button_center Button_mb50" text="Показать больше" handler={handleLimit} />
+                    )}
                 </Layout>
             </Suspense>
         </>
