@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
 import { setSerchQuery } from "../../store/slices/books-slice";
 import useDebouncedValue from "../../hooks/useDebouncedValue";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 
 export const InputComponent = () => {
@@ -49,6 +51,11 @@ export const InputComponent = () => {
                     value={query}
                     onChange={handleChange}
                 />
+                {query && (
+                    <button className="InputComponent-clear" onClick={() => setQuery("")}>
+                        <FontAwesomeIcon icon={faXmark} />
+                    </button>
+                )}
             </form>
         );
     }

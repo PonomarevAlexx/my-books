@@ -1,14 +1,13 @@
 .InputComponent {
+    position: relative;
     width: 500px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
 }
 
 .InputComponent-input {
     font-size: 18px;
     width: 100%;
-    padding: 12px;
+    box-sizing: border-box;
+    padding: 12px 45px 12px 12px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     background-color: transparent;
     color: #fff;
@@ -26,4 +25,22 @@
 .InputComponent-input::placeholder {
     color: rgba(255, 255, 255, 0.7);
     font-size: 16px;
+}
+
+.InputComponent-clear {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.InputComponent-clear:hover {
+    color: rgba(255, 255, 255, 1);
+    transition: color 0.3s;
 }

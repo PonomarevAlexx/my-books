@@ -20,6 +20,8 @@
     border: 1px solid rgb(116, 155, 194);
     border-radius: 10px;
     transition: all 0.3s;
+    font-family: "Segoe Print", "Bradley Hand", Chilanka, TSCu_Comic, casual, cursive;
+    font-weight: normal;
 }
 
 .Button-btn:hover {

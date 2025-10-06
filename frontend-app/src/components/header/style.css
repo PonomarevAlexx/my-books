@@ -33,10 +33,11 @@
     text-decoration: none;
     font-size: 18px;
     padding: 20px;
-    color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s;
 }
 
 .Header-nav-item:hover {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 1);
     transition: color 0.3s;
 }

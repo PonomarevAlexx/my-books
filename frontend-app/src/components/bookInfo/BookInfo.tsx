@@ -1,4 +1,6 @@
 import type { Book } from "../../types/types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 import imgNotCover from "../../img/Not_image_book.png";
 import { BookInfoAuthorLinks } from "../bookInfoAuthorLinks/BookInfoAuthorLinks";
@@ -64,7 +66,10 @@ const BookInfo: React.FC<BookInfo> = ({ book }) => {
                     </div>
                     <div className="bookInfo-characteristic-item">
                         <div>ISBN:</div>
-                        <div className="bookInfo-characteristic-item-text">{book.ISBN}</div>
+                        <div className="bookInfo-characteristic-item-text">
+                            {book.ISBN}
+                            <FontAwesomeIcon icon={faCopy} />
+                        </div>
                     </div>
                 </div>
             </div>

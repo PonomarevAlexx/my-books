@@ -32,7 +32,7 @@
     width: calc(100% - (33% + 30px + 20px));
 }
 
-.bookInfo-characteristic-item{
+.bookInfo-characteristic-item {
     font-style: italic;
     font-size: 18px;
     display: flex;
@@ -53,13 +53,19 @@
     /* color: rgba(70, 130, 169, 0.8); */
 }
 
+.bookInfo-characteristic-item-text svg {
+    margin-left: 15px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
 .bookInfo-characteristic-links {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.bookInfo-characteristic-links span{
+.bookInfo-characteristic-links span {
     color: rgba(70, 130, 169, 0.6);
 }
 
