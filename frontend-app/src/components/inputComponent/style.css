@@ -13,6 +13,8 @@
     color: #fff;
     border-radius: 10px;
     transition: border 0.3s;
+    font-family: "Segoe Print", "Bradley Hand", Chilanka, TSCu_Comic, casual, cursive;
+    font-weight: normal;
 }
 
 .InputComponent-input:active,

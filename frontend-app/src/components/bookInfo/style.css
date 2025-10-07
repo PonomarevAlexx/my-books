@@ -53,10 +53,19 @@
     /* color: rgba(70, 130, 169, 0.8); */
 }
 
-.bookInfo-characteristic-item-text svg {
+.bookInfo-characteristic-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.bookInfo-characteristic-btn svg {
     margin-left: 15px;
     font-size: 15px;
-    cursor: pointer;
+    color: rgb(70, 130, 169);
+    padding: 0 10px;
+    margin: 0;
 }
 
 .bookInfo-characteristic-links {

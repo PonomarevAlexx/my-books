@@ -14,6 +14,13 @@ const BookInfo: React.FC<BookInfo> = ({ book }) => {
     const title = book.title.map((el) => `"${el}"`).join(", ");
     const bookSeries = book.bookSeries.name;
 
+    const handleCopyISBN = () => {
+        navigator.clipboard
+            .writeText(book.ISBN)
+            .then(() => console.log("Copied"))
+            .catch((err) => console.error(err));
+    };
+
     return (
         <div className="bookInfo">
             <h3 className="bookInfo-title">{`${firstAuthor}: ${title}`}</h3>
@@ -68,7 +75,9 @@ const BookInfo: React.FC<BookInfo> = ({ book }) => {
                         <div>ISBN:</div>
                         <div className="bookInfo-characteristic-item-text">
                             {book.ISBN}
-                            <FontAwesomeIcon icon={faCopy} />
+                            <button onClick={handleCopyISBN} className="bookInfo-characteristic-btn">
+                                <FontAwesomeIcon icon={faCopy} />
+                            </button>
                         </div>
                     </div>
                 </div>
