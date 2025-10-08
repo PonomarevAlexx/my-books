@@ -5,6 +5,7 @@ import "./style.css";
 import imgNotCover from "../../img/Not_image_book.png";
 import { BookInfoAuthorLinks } from "../bookInfoAuthorLinks/BookInfoAuthorLinks";
 import { ReadMoreDescription } from "../readMoreDescription/ReadMoreDescription";
+import { useEffect, useState } from "react";
 interface BookInfo {
     book: Book;
 }
@@ -13,13 +14,27 @@ const BookInfo: React.FC<BookInfo> = ({ book }) => {
     const firstAuthor = book.author[0].name;
     const title = book.title.map((el) => `"${el}"`).join(", ");
     const bookSeries = book.bookSeries.name;
+    const [copied, setCopied] = useState(false);
 
     const handleCopyISBN = () => {
         navigator.clipboard
             .writeText(book.ISBN)
-            .then(() => console.log("Copied"))
+            .then(() => {
+                console.log("Copied");
+                setCopied(true);
+            })
             .catch((err) => console.error(err));
     };
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setCopied(false);
+        }, 1500);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [copied]);
 
     return (
         <div className="bookInfo">
@@ -74,6 +89,7 @@ const BookInfo: React.FC<BookInfo> = ({ book }) => {
                     <div className="bookInfo-characteristic-item">
                         <div>ISBN:</div>
                         <div className="bookInfo-characteristic-item-text">
+                            {copied && <div className="bookInfo-characteristic-item-text-copied">Скопированно</div>}
                             {book.ISBN}
                             <button onClick={handleCopyISBN} className="bookInfo-characteristic-btn">
                                 <FontAwesomeIcon icon={faCopy} />

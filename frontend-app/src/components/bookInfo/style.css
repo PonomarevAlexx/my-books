@@ -50,7 +50,18 @@
 
 .bookInfo-characteristic-item-text {
     width: 45%;
+    position: relative;
     /* color: rgba(70, 130, 169, 0.8); */
+}
+
+.bookInfo-characteristic-item-text-copied {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid rgb(70, 130, 169);
+    border-radius: 10px;
+    padding: 2px 5px;
 }
 
 .bookInfo-characteristic-btn {
