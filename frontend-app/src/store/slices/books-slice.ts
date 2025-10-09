@@ -3,8 +3,6 @@ import type { Author } from "../../types/types";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { URL, STATUS_LOADING } from "../../constants/constants";
 
-const LIMIT = 20;
-
 type Book = {
     _id: string;
     title: string[];
@@ -16,8 +14,6 @@ type State = {
     bookList: Book[];
     status: string;
     error: string;
-    limit: number;
-    searchQuery: string;
     length: number;
 };
 
@@ -25,8 +21,6 @@ const initialState: State = {
     bookList: [],
     status: "",
     error: "",
-    limit: LIMIT,
-    searchQuery: "",
     length: 0,
 };
 
@@ -42,15 +36,7 @@ export const fetchBooks = createAsyncThunk(
 export const booksSlice = createSlice({
     name: "books",
     initialState,
-    reducers: {
-        increaseLimit: (state) => {
-            state.limit += LIMIT;
-        },
-        setSearchQueryBooks: (state, action) => {
-            state.searchQuery = action.payload;
-            state.limit = LIMIT;
-        },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchBooks.pending, (state) => {
             state.status = STATUS_LOADING.LOADING;
@@ -81,16 +67,6 @@ export const selectStatusLoading = (state: RootState) => {
     return state.books.status;
 };
 
-export const selectLimit = (state: RootState) => {
-    return state.books.limit;
-};
-
-export const selectSearchQuery = (state: RootState) => {
-    return state.books.searchQuery;
-};
-
 export const selectLengthBooksList = (state: RootState) => {
     return state.books.length;
 };
-
-export const { increaseLimit, setSearchQueryBooks } = booksSlice.actions;

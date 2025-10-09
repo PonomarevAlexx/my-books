@@ -2,14 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { STATUS_LOADING, URL } from "../../constants/constants";
 import type { RootState } from "../store";
 
-const LIMIT = 16;
-
 interface State {
     authorsList: Authors[];
     status: string;
     error: string;
-    limit: number;
-    searchQuery: string;
     length: number;
 }
 
@@ -23,8 +19,6 @@ const initialState: State = {
     authorsList: [],
     status: "",
     error: "",
-    limit: LIMIT,
-    searchQuery: "",
     length: 0,
 };
 
@@ -40,15 +34,7 @@ export const fetchAuthors = createAsyncThunk(
 export const authorsSlice = createSlice({
     name: "authors",
     initialState,
-    reducers: {
-        increaseLimit: (state) => {
-            state.limit += LIMIT;
-        },
-        setSearchQueryAuthors: (state, action) => {
-            state.searchQuery = action.payload;
-            state.limit = LIMIT;
-        },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchAuthors.pending, (state) => {
             state.status = STATUS_LOADING.LOADING;
@@ -75,16 +61,6 @@ export const selectAllAuthors = (state: RootState) => {
     return state.authors.authorsList;
 };
 
-export const selectLimitAuthors = (state: RootState) => {
-    return state.authors.limit;
-};
-
-export const selectSearchQueryAuthors = (state: RootState) => {
-    return state.authors.searchQuery;
-};
-
-export const selectLengthAuthorsLiist = (state: RootState) => {
+export const selectLengthAuthorsList = (state: RootState) => {
     return state.authors.length;
 };
-
-export const { increaseLimit, setSearchQueryAuthors } = authorsSlice.actions;

@@ -3,6 +3,7 @@ import { booksReducer } from "./slices/books-slice";
 import { bookReducer } from "./slices/book-slice";
 import { authorsReducer } from "./slices/authors-slice";
 import { authorReducer } from "./slices/author-slice";
+import { filteresReducer } from "./slices/filters-slice";
 
 export const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
         book: bookReducer,
         authors: authorsReducer,
         author: authorReducer,
+        filteres: filteresReducer,
     },
 });
 
