@@ -8,7 +8,7 @@ export const Header = () => {
             <div className="Header-wrapper">
                 <div className="Header-logo">
                     <NavLink className="Header-logo-link" to="/books">
-                        MyLibrary
+                        My Books
                     </NavLink>
                 </div>
                 <InputComponent />
@@ -19,9 +19,9 @@ export const Header = () => {
                     <NavLink className="Header-nav-item" to="/authors">
                         Авторы
                     </NavLink>
-                    <NavLink className="Header-nav-item" to="/books">
+                    {/* <NavLink className="Header-nav-item" to="/books">
                         Серии
-                    </NavLink>
+                    </NavLink> */}
                 </nav>
             </div>
         </div>

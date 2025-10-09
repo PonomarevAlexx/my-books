@@ -2,7 +2,8 @@
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
-import { setSerchQuery } from "../../store/slices/books-slice";
+import { setSearchQueryBooks } from "../../store/slices/books-slice";
+import { setSearchQueryAuthors } from "../../store/slices/authors-slice";
 import useDebouncedValue from "../../hooks/useDebouncedValue";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -27,7 +28,9 @@ export const InputComponent = () => {
 
     useEffect(() => {
         if (pathName === "/books") {
-            dispatch(setSerchQuery(debouncedQuery.trim()));
+            dispatch(setSearchQueryBooks(debouncedQuery.trim()));
+        } else if (pathName === "/authors") {
+            dispatch(setSearchQueryAuthors(debouncedQuery.trim()));
         }
     }, [debouncedQuery, dispatch, pathName]);
 

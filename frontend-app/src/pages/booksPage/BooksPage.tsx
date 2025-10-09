@@ -14,7 +14,7 @@ const BooksPage = () => {
     const lengthBooksList = useAppSelector(selectLengthBooksList);
 
     useEffect(() => {
-        dispatch(fetchBooks({ serchQuery: searchQuery, limit }));
+        dispatch(fetchBooks({ searchQuery: searchQuery, limit }));
     }, [dispatch, searchQuery, limit]);
 
     const handleLimit = () => {

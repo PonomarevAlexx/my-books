@@ -17,7 +17,7 @@ type State = {
     status: string;
     error: string;
     limit: number;
-    serchQuery: string;
+    searchQuery: string;
     length: number;
 };
 
@@ -26,14 +26,14 @@ const initialState: State = {
     status: "",
     error: "",
     limit: LIMIT,
-    serchQuery: "",
+    searchQuery: "",
     length: 0,
 };
 
 export const fetchBooks = createAsyncThunk(
     "@books/fetchBooks",
-    async ({ serchQuery, limit }: { serchQuery?: string; limit?: number }) => {
-        const response = await fetch(`${URL}/books/${limit}?search=${serchQuery}`);
+    async ({ searchQuery, limit }: { searchQuery?: string; limit?: number }) => {
+        const response = await fetch(`${URL}/books/${limit}?search=${searchQuery}`);
 
         return await response.json();
     }
@@ -46,8 +46,8 @@ export const booksSlice = createSlice({
         increaseLimit: (state) => {
             state.limit += LIMIT;
         },
-        setSerchQuery: (state, action) => {
-            state.serchQuery = action.payload;
+        setSearchQueryBooks: (state, action) => {
+            state.searchQuery = action.payload;
             state.limit = LIMIT;
         },
     },
@@ -86,11 +86,11 @@ export const selectLimit = (state: RootState) => {
 };
 
 export const selectSearchQuery = (state: RootState) => {
-    return state.books.serchQuery;
+    return state.books.searchQuery;
 };
 
 export const selectLengthBooksList = (state: RootState) => {
     return state.books.length;
 };
 
-export const { increaseLimit, setSerchQuery } = booksSlice.actions;
+export const { increaseLimit, setSearchQueryBooks } = booksSlice.actions;

@@ -16,7 +16,7 @@ const initialState: State = {
 };
 
 export const fetchAuthor = createAsyncThunk("@author/fetchAuthor", async (id: string) => {
-    const response = await fetch(`${URL}/authors/${id}`);
+    const response = await fetch(`${URL}/author/${id}`);
 
     return await response.json();
 });

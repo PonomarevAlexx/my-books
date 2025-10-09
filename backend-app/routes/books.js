@@ -27,7 +27,7 @@ router.get("/books/:limit", async (req, res) => {
         .limit(Number(limit))
         .toArray();
 
-    res.json({books, length});
+    res.json({ books, length });
 });
 
 // Получить книгу по ID
@@ -45,13 +45,30 @@ router.get("/book/:id", async (req, res) => {
 });
 
 // Получить всех авторов
-router.get("/authors", async (req, res) => {
-    const authors = await getDB().collection("authors").find().project({ name: 1, photo: 1 }).toArray();
-    res.json(authors);
+router.get("/authors/:limit", async (req, res) => {
+    const { limit } = req.params;
+    const search = req.query.search || "";
+    let query = {};
+
+    if (search) {
+        query = {
+            name: { $regex: search, $options: "i" },
+        };
+    }
+
+    const length = await getDB().collection("authors").countDocuments(query);
+    const authors = await getDB()
+        .collection("authors")
+        .find(query)
+        .project({ name: 1, photo: 1 })
+        .limit(Number(limit))
+        .toArray();
+
+    res.json({ length, authors });
 });
 
 // Получить автора по ID
-router.get("/authors/:id", async (req, res) => {
+router.get("/author/:id", async (req, res) => {
     const { id } = req.params;
 
     const authors = await getDB()
