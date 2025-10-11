@@ -11,7 +11,7 @@ interface AuthorItem {
 
 export const AuthorItem: React.FC<AuthorItem> = ({ id, cover, name }) => {
     return (
-        <Link className="AuthorItem-link" to={`/authors/${id}`}>
+        <Link className="AuthorItem-link" to={`/author/${id}`}>
             <div className="AuthorItem">
                 <div className="AuthorItem-image">
                     <img src={cover ? cover : noPhoto} alt={name} loading="lazy" />

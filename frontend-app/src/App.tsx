@@ -17,7 +17,7 @@ function App() {
                     <Route path={"/books"} element={<BooksPageLazy />} />
                     <Route path={"/book/:id"} element={<BookInfoPageLazy />} />
                     <Route path={"/authors"} element={<AuthorsPageLazy />} />
-                    <Route path={"/authors/:id"} element={<AuthorPageLazy />} />
+                    <Route path={"/author/:id"} element={<AuthorPageLazy />} />
                 </Routes>
             </Suspense>
             <Footer />
