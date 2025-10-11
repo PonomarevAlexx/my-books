@@ -1,5 +1,5 @@
 import { useLocation } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import useDebouncedValue from "../../hooks/useDebouncedValue";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,8 +7,10 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 import {
     resetSearchQueryAndLimit,
+    selectCurrentPage,
     selectLimit,
     selectSearchQuery,
+    setCurrentPage,
     setSearchQuery,
 } from "../../store/slices/filters-slice";
 import { fetchAuthors } from "../../store/slices/authors-slice";
@@ -19,31 +21,49 @@ export const InputComponent = () => {
     const pathName = location.pathname;
     const dispatch = useAppDispatch();
     const searchQuery = useAppSelector(selectSearchQuery);
-    const debouncedQuery = useDebouncedValue(searchQuery, 500);
+    const [query, setQuery] = useState("");
+    const debouncedQuery = useDebouncedValue(query, 500);
     const limit = useAppSelector(selectLimit);
-
-    useEffect(() => {
-        dispatch(resetSearchQueryAndLimit());
-    }, [pathName, dispatch]);
+    const currentPage = useAppSelector(selectCurrentPage);
 
     useEffect(() => {
         if (pathName === "/books") {
-            dispatch(fetchBooks({ searchQuery: debouncedQuery, limit }));
+            dispatch(setCurrentPage("books"));
         } else if (pathName === "/authors") {
-            dispatch(fetchAuthors({ searchQuery: debouncedQuery, limit }));
+            dispatch(setCurrentPage("authors"));
+        } else {
+            dispatch(setCurrentPage(null));
         }
-    }, [debouncedQuery, dispatch, limit, pathName]);
+    }, [dispatch, pathName]);
+
+    useEffect(() => {
+        dispatch(resetSearchQueryAndLimit());
+        setQuery("");
+    }, [pathName, dispatch]);
+
+    useEffect(() => {
+        dispatch(setSearchQuery(debouncedQuery));
+    }, [dispatch, debouncedQuery]);
+
+    useEffect(() => {
+        if (currentPage === "books") {
+            dispatch(fetchBooks({ searchQuery: searchQuery, limit }));
+        } else if (currentPage === "authors") {
+            dispatch(fetchAuthors({ searchQuery: searchQuery, limit }));
+        }
+    }, [dispatch, limit, searchQuery, currentPage]);
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setSearchQuery(e.target.value));
+        setQuery(e.target.value);
     };
 
     const handleResetFilteres = () => {
         dispatch(resetSearchQueryAndLimit());
+        setQuery("");
     };
 
     if (pathName === "/books" || pathName === "/authors") {
@@ -55,10 +75,10 @@ export const InputComponent = () => {
                         pathName === "/books" ? "Введите имя автора или название произведения" : "Введите имя автора"
                     }
                     type="text"
-                    value={searchQuery}
+                    value={query}
                     onChange={handleChange}
                 />
-                {searchQuery && (
+                {query && (
                     <button className="InputComponent-clear" onClick={handleResetFilteres}>
                         <FontAwesomeIcon icon={faXmark} />
                     </button>

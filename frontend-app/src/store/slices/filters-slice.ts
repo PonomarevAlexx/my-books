@@ -6,11 +6,13 @@ const LIMIT = 20;
 interface State {
     searchQuery: string;
     limit: number;
+    currentPage: "authors" | "books" | null;
 }
 
 const initialState: State = {
     searchQuery: "",
     limit: LIMIT,
+    currentPage: null,
 };
 
 export const filteresSlice = createSlice({
@@ -28,6 +30,9 @@ export const filteresSlice = createSlice({
             state.searchQuery = "";
             state.limit = LIMIT;
         },
+        setCurrentPage: (state, action) => {
+            state.currentPage = action.payload;
+        },
     },
 });
 
@@ -41,4 +46,8 @@ export const selectLimit = (state: RootState) => {
     return state.filteres.limit;
 };
 
-export const { increaseLimit, setSearchQuery, resetSearchQueryAndLimit } = filteresSlice.actions;
+export const selectCurrentPage = (state: RootState) => {
+    return state.filteres.currentPage;
+};
+
+export const { increaseLimit, setSearchQuery, resetSearchQueryAndLimit, setCurrentPage } = filteresSlice.actions;
