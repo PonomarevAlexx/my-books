@@ -1,6 +1,11 @@
 import { Layout } from "../../components/layout/Layout";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { selectIsPagination, selectLengthAuthorsList, selectStatusLoading, setIsPagination } from "../../store/slices/authors-slice";
+import {
+    selectIsPagination,
+    selectLengthAuthorsList,
+    selectStatusLoading,
+    setIsPagination,
+} from "../../store/slices/authors-slice";
 import { PageLoader } from "../../components/pageLoader/PageLoader";
 import { Button } from "../../components/button/Button";
 import { increaseLimit, selectLimit } from "../../store/slices/filters-slice";
@@ -11,18 +16,18 @@ const AuthorsPage = () => {
     const limit = useAppSelector(selectLimit);
     const lenghtAuthorsList = useAppSelector(selectLengthAuthorsList);
     const statusLoading = useAppSelector(selectStatusLoading);
-    const isPagination = useAppSelector(selectIsPagination)
+    const isPagination = useAppSelector(selectIsPagination);
 
     const handleLimit = () => {
         dispatch(increaseLimit());
-        dispatch(setIsPagination())
+        dispatch(setIsPagination());
     };
 
     return (
         <Layout>
             {statusLoading === "loading" && !isPagination ? <PageLoader /> : <AuthorsList />}
 
-            {lenghtAuthorsList > limit && statusLoading === "resolved" ? (
+            {lenghtAuthorsList > limit ? (
                 <Button style="Button Button_center Button_mb50" text="Показать больше" handler={handleLimit} />
             ) : null}
         </Layout>

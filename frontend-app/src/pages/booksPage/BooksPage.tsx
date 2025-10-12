@@ -26,7 +26,7 @@ const BooksPage = () => {
     return (
         <Layout>
             {statusLoading === "loading" && !isPagination ? <PageLoader /> : <BookList />}
-            {lengthBooksList > limit && statusLoading === "resolved" ? (
+            {lengthBooksList > limit ? (
                 <Button style="Button Button_center Button_mb50" text="Показать больше" handler={handleLimit} />
             ) : null}
         </Layout>

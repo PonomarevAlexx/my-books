@@ -1,8 +1,12 @@
 import { NavLink } from "react-router";
 import "./style.css";
 import { InputComponent } from "../inputComponent/Input";
+import { useAppSelector } from "../../hooks/hooks";
+import { selectCurrentPage } from "../../store/slices/filters-slice";
 
 export const Header = () => {
+    const currentPage = useAppSelector(selectCurrentPage);
+
     return (
         <div className="Header">
             <div className="Header-wrapper">
@@ -13,10 +17,16 @@ export const Header = () => {
                 </div>
                 <InputComponent />
                 <nav className="Header-nav">
-                    <NavLink className="Header-nav-item" to="/books">
+                    <NavLink
+                        className={currentPage === "books" ? "Header-nav-item active" : "Header-nav-item"}
+                        to="/books"
+                    >
                         Книги
                     </NavLink>
-                    <NavLink className="Header-nav-item" to="/authors">
+                    <NavLink
+                        className={currentPage === "authors" ? "Header-nav-item active" : "Header-nav-item"}
+                        to="/authors"
+                    >
                         Авторы
                     </NavLink>
                     {/* <NavLink className="Header-nav-item" to="/books">

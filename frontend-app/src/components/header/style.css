@@ -37,6 +37,10 @@
     transition: color 0.3s;
 }
 
+.active {
+    color: rgba(255, 255, 255, 1);
+}
+
 .Header-nav-item:hover {
     color: rgba(255, 255, 255, 1);
     transition: color 0.3s;
