@@ -7,6 +7,7 @@ interface State {
     status: string;
     error: string;
     length: number;
+    isPagination: boolean;
 }
 
 interface Authors {
@@ -20,6 +21,7 @@ const initialState: State = {
     status: "",
     error: "",
     length: 0,
+    isPagination: false,
 };
 
 export const fetchAuthors = createAsyncThunk(
@@ -34,7 +36,11 @@ export const fetchAuthors = createAsyncThunk(
 export const authorsSlice = createSlice({
     name: "authors",
     initialState,
-    reducers: {},
+    reducers: {
+        setIsPagination: (state) => {
+            state.isPagination = true;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchAuthors.pending, (state) => {
             state.status = STATUS_LOADING.LOADING;
@@ -44,10 +50,12 @@ export const authorsSlice = createSlice({
             state.status = STATUS_LOADING.RESOLVED;
             state.authorsList = action.payload.authors;
             state.length = action.payload.length;
+            state.isPagination = false;
             console.log(state.authorsList, state.length);
         });
         builder.addCase(fetchAuthors.rejected, (state, action) => {
             state.status = STATUS_LOADING.REJECTED;
+            state.isPagination = false;
             if (typeof action.payload === "string") {
                 state.error = action.payload;
             }
@@ -61,6 +69,16 @@ export const selectAllAuthors = (state: RootState) => {
     return state.authors.authorsList;
 };
 
+export const selectStatusLoading = (state: RootState) => {
+    return state.authors.status;
+};
+
 export const selectLengthAuthorsList = (state: RootState) => {
     return state.authors.length;
 };
+
+export const selectIsPagination = (state: RootState) => {
+    return state.authors.isPagination;
+};
+
+export const { setIsPagination } = authorsSlice.actions;

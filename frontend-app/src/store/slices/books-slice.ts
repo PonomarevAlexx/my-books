@@ -15,6 +15,7 @@ type State = {
     status: string;
     error: string;
     length: number;
+    isPagination: boolean;
 };
 
 const initialState: State = {
@@ -22,6 +23,7 @@ const initialState: State = {
     status: "",
     error: "",
     length: 0,
+    isPagination: false,
 };
 
 export const fetchBooks = createAsyncThunk(
@@ -36,7 +38,11 @@ export const fetchBooks = createAsyncThunk(
 export const booksSlice = createSlice({
     name: "books",
     initialState,
-    reducers: {},
+    reducers: {
+        setIsPagination: (state) => {
+            state.isPagination = true;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchBooks.pending, (state) => {
             state.status = STATUS_LOADING.LOADING;
@@ -44,12 +50,14 @@ export const booksSlice = createSlice({
         });
         builder.addCase(fetchBooks.fulfilled, (state, action) => {
             state.status = STATUS_LOADING.RESOLVED;
+            state.isPagination = false;
             state.bookList = action.payload.books;
             state.length = action.payload.length;
             console.log(state.bookList, state.length);
         });
         builder.addCase(fetchBooks.rejected, (state, action) => {
             state.status = STATUS_LOADING.REJECTED;
+            state.isPagination = false;
             if (typeof action.payload === "string") {
                 state.error = action.payload;
             }
@@ -70,3 +78,9 @@ export const selectStatusLoading = (state: RootState) => {
 export const selectLengthBooksList = (state: RootState) => {
     return state.books.length;
 };
+
+export const selectIsPagination = (state: RootState) => {
+    return state.books.isPagination;
+};
+
+export const { setIsPagination } = booksSlice.actions;

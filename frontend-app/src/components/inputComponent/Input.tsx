@@ -27,6 +27,9 @@ export const InputComponent = () => {
     const currentPage = useAppSelector(selectCurrentPage);
 
     useEffect(() => {
+        dispatch(resetSearchQueryAndLimit());
+        setQuery("");
+
         if (pathName === "/books") {
             dispatch(setCurrentPage("books"));
         } else if (pathName === "/authors") {
@@ -35,11 +38,6 @@ export const InputComponent = () => {
             dispatch(setCurrentPage(null));
         }
     }, [dispatch, pathName]);
-
-    useEffect(() => {
-        dispatch(resetSearchQueryAndLimit());
-        setQuery("");
-    }, [pathName, dispatch]);
 
     useEffect(() => {
         dispatch(setSearchQuery(debouncedQuery));
