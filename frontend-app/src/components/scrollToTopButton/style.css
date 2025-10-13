@@ -1,0 +1,41 @@
+/* .ScrollToTopButton {
+    position: fixed;
+    cursor: pointer;
+    bottom: 250px;
+    right: 100px;
+    border: 1px solid rgb(70, 130, 169);
+    border-radius: 5px;
+    background-color: rgb(70, 130, 169);
+    color: rgb(246, 244, 235);
+    padding: 15px;
+    font-size: 20px;
+    transition: all 0.3s;
+}
+
+.ScrollToTopButton:hover {
+    color: rgb(70, 130, 169);
+    background-color: rgb(246, 244, 235);
+    transition: all 0.3s;
+} */
+
+.ScrollToTopButton {
+    position: fixed;
+    cursor: pointer;
+    bottom: 100px;
+    right: 100px;
+    height: 60px;
+    width: 60px;
+    border: 1px solid rgb(70, 130, 169);
+    border-radius: 5px;
+    background-color: rgb(246, 244, 235);
+    color: rgb(70, 130, 169);
+    font-size: 22px;
+    transition: all 0.3s;
+}
+
+.ScrollToTopButton:hover {
+    border: 1px solid rgb(246, 244, 235);
+    color: rgb(246, 244, 235);
+    background-color: rgb(70, 130, 169);
+    transition: all 0.3s;
+}

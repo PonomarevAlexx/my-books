@@ -7,6 +7,7 @@ import { Header } from "./components/header/Header";
 import { Footer } from "./components/footer/Footer";
 import { AuthorsPageLazy } from "./pages/authorsPage/AuthorsPage.lazy";
 import { AuthorPageLazy } from "./pages/authorInfoPage/AuthorInfoPage.lazy";
+import { ScrollToTopButton } from "./components/scrollToTopButton/ScrollToTopButton";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                     <Route path={"/author/:id"} element={<AuthorPageLazy />} />
                 </Routes>
             </Suspense>
+            <ScrollToTopButton />
             <Footer />
         </>
     );
