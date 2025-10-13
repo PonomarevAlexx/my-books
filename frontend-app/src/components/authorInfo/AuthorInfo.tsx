@@ -2,12 +2,27 @@ import type { Author } from "../../types/types";
 import { ReadMoreDescription } from "../readMoreDescription/ReadMoreDescription";
 import "./style.css";
 import noPhoto from "../../img/noPhoto.png";
+import BookList from "../bookList/BookList";
+import { useAppSelector } from "../../hooks/hooks";
+import { selectLength, selectListBooksOfAuthor } from "../../store/slices/author-slice";
+import { Button } from "../button/Button";
+import { useState } from "react";
 
 interface AuthorInfo {
     author: Author;
 }
 
 const AuthorInfo: React.FC<AuthorInfo> = ({ author }) => {
+    const bookList = useAppSelector(selectListBooksOfAuthor);
+    const length = useAppSelector(selectLength);
+    const bookListShort = bookList.slice(0, 4);
+
+    const [isShowAll, setIsShowAll] = useState(false);
+
+    const handleIsShow = () => {
+        setIsShowAll(!isShowAll);
+    };
+
     return (
         <div className="authorInfo">
             <h3 className="authorInfo-name">{author.name}</h3>
@@ -43,6 +58,14 @@ const AuthorInfo: React.FC<AuthorInfo> = ({ author }) => {
                 <h4>Об Авторе</h4>
                 <ReadMoreDescription description={author.info} />
             </div>
+            <BookList bookList={isShowAll && length > 4 ? bookList : bookListShort} />
+            {length > 4 && (
+                <Button
+                    style="Button Button_center"
+                    text={isShowAll ? "Показать меньше" : "Показать больше"}
+                    handler={handleIsShow}
+                />
+            )}
         </div>
     );
 };

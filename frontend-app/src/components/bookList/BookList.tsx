@@ -1,11 +1,12 @@
-import { selectAllBooks } from "../../store/slices/books-slice";
-import { useAppSelector } from "../../hooks/hooks";
 import { BookItem } from "../bookItem/BookItem";
+import type { BookShort } from "../../types/types";
 import "./style.css";
 
-const BookList: React.FC = () => {
-    const bookList = useAppSelector(selectAllBooks);
+interface BookList {
+    bookList: BookShort[];
+}
 
+const BookList: React.FC<BookList> = ({ bookList }) => {
     return (
         <div className="bookList">
             {bookList.map((el) => (

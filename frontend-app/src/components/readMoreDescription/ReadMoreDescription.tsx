@@ -21,7 +21,7 @@ export const ReadMoreDescription: React.FC<Description> = ({ description }) => {
             {description.length < 500 || showMore ? fullDescription : shortDescription}
             {description.length > 500 && (
                 <Button
-                    style="Button"
+                    style="Button Button_center"
                     text={!showMore ? "Показать больше" : "Показать меньше"}
                     handler={toggleReadMore}
                 />

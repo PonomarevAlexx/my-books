@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import {
+    selectAllBooks,
     selectIsPagination,
     selectLengthBooksList,
     selectStatusLoading,
@@ -17,6 +18,7 @@ const BooksPage = () => {
     const lengthBooksList = useAppSelector(selectLengthBooksList);
     const statusLoading = useAppSelector(selectStatusLoading);
     const isPagination = useAppSelector(selectIsPagination);
+    const bookList = useAppSelector(selectAllBooks);
 
     const handleLimit = () => {
         dispatch(increaseLimit());
@@ -25,7 +27,7 @@ const BooksPage = () => {
 
     return (
         <Layout>
-            {statusLoading === "loading" && !isPagination ? <PageLoader /> : <BookList />}
+            {statusLoading === "loading" && !isPagination ? <PageLoader /> : <BookList bookList={bookList} />}
             {lengthBooksList > limit ? (
                 <Button style="Button Button_center Button_mb50" text="Показать больше" handler={handleLimit} />
             ) : null}

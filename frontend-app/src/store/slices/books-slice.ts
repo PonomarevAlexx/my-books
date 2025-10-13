@@ -1,17 +1,10 @@
 import type { RootState } from "../store";
-import type { Author } from "../../types/types";
+import type { BookShort } from "../../types/types";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { URL, STATUS_LOADING } from "../../constants/constants";
 
-type Book = {
-    _id: string;
-    title: string[];
-    author: Author[];
-    cover: string;
-};
-
 type State = {
-    bookList: Book[];
+    bookList: BookShort[];
     status: string;
     error: string;
     length: number;
@@ -67,7 +60,7 @@ export const booksSlice = createSlice({
 
 export const booksReducer = booksSlice.reducer;
 
-export const selectAllBooks = (state: RootState): Book[] => {
+export const selectAllBooks = (state: RootState) => {
     return state.books.bookList;
 };
 

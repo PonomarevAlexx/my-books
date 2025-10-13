@@ -71,11 +71,17 @@ router.get("/authors/:limit", async (req, res) => {
 router.get("/author/:id", async (req, res) => {
     const { id } = req.params;
 
-    const authors = await getDB()
+    const query = {
+        "author._id": { $regex: id, $options: "i" },
+    };
+
+    const books = await getDB().collection("books").find(query).project({ title: 1, author: 1, cover: 1 }).toArray();
+    const length = await getDB().collection("books").countDocuments(query);
+    const author = await getDB()
         .collection("authors")
         .findOne({ _id: new ObjectId(id) });
 
-    res.json(authors);
+    res.json({ author, books, length });
 });
 
 module.exports = router;

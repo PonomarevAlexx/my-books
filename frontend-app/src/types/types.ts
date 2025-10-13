@@ -32,6 +32,13 @@ export interface Book {
     description: string;
 }
 
+export interface BookShort {
+    _id: string;
+    title: string[];
+    author: Author[];
+    cover: string;
+}
+
 export interface Author {
     _id: string;
     name: string;
