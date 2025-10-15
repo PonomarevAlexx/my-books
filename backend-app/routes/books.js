@@ -23,7 +23,7 @@ router.get("/books/:limit", async (req, res) => {
     const books = await getDB()
         .collection("books")
         .find(query)
-        .project({ title: 1, author: 1, cover: 1 })
+        .project({ title: 1, author: 1, cover: 1, isRead: 1 })
         .limit(Number(limit))
         .toArray();
 

@@ -16,6 +16,7 @@ const BookList: React.FC<BookList> = ({ bookList }) => {
                     cover={el.cover}
                     title={el.title.map((el) => "«" + el + "»").join(", ")}
                     author={el.author[0].name}
+                    isRead={el.isRead}
                 />
             ))}
         </div>

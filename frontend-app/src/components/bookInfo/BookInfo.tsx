@@ -1,6 +1,7 @@
 import type { Book } from "../../types/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 import imgNotCover from "../../img/Not_image_book.png";
 import { BookInfoAuthorLinks } from "../bookInfoAuthorLinks/BookInfoAuthorLinks";
@@ -41,6 +42,11 @@ const BookInfo: React.FC<BookInfo> = ({ book }) => {
             <h3 className="bookInfo-title">{`${firstAuthor}: ${title}`}</h3>
             <div className="bookInfo-row">
                 <div className="bookInfo-img">
+                    {book.isRead && (
+                        <div className="bookInfo-img-icon">
+                            <FontAwesomeIcon icon={faCircleCheck} />
+                        </div>
+                    )}
                     <img src={book.cover || imgNotCover} alt={title} />
                 </div>
                 <div className="bookInfo-characteristic">

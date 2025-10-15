@@ -37,6 +37,7 @@ export interface BookShort {
     title: string[];
     author: Author[];
     cover: string;
+    isRead: boolean
 }
 
 export interface Author {
