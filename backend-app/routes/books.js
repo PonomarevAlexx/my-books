@@ -75,7 +75,11 @@ router.get("/author/:id", async (req, res) => {
         "author._id": { $regex: id, $options: "i" },
     };
 
-    const books = await getDB().collection("books").find(query).project({ title: 1, author: 1, cover: 1 }).toArray();
+    const books = await getDB()
+        .collection("books")
+        .find(query)
+        .project({ title: 1, author: 1, cover: 1, isRead: 1 })
+        .toArray();
     const length = await getDB().collection("books").countDocuments(query);
     const author = await getDB()
         .collection("authors")
