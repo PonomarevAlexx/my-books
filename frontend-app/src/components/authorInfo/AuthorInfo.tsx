@@ -1,10 +1,10 @@
-import type { Author } from "../../types/types";
+import type { Author } from "@/types/types";
 import { ReadMoreDescription } from "../readMoreDescription/ReadMoreDescription";
-import "./style.css";
-import noPhoto from "../../img/noPhoto.png";
+import "./style.scss";
+import noPhoto from "@/img/noPhoto.png";
 import BookList from "../bookList/BookList";
-import { useAppSelector } from "../../hooks/hooks";
-import { selectLength, selectListBooksOfAuthor } from "../../store/slices/author-slice";
+import { useAppSelector } from "@/hooks/hooks";
+import { selectLength, selectListBooksOfAuthor } from "@/store/slices/author-slice";
 import { Button } from "../button/Button";
 import { useState } from "react";
 

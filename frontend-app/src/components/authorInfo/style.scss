@@ -1,0 +1,62 @@
+.authorInfo {
+    padding: 50px 0;
+
+    h4 {
+        color: $primary-color;
+        font-size: 22px;
+    }
+
+    &-name {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 80px;
+        font-size: 32px;
+        color: $primary-color;
+    }
+
+    &-row {
+        display: flex;
+        flex-direction: row;
+        gap: 60px;
+    }
+
+    &-img {
+        width: 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+
+    &-characteristics {
+        width: 100%;
+
+        &-item {
+            font-style: italic;
+            font-size: 18px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            color: $primary-color;
+            margin-bottom: 10px;
+
+            &-text {
+                width: 55%;
+            }
+        }
+    }
+
+    &-info {
+        margin-top: 100px;
+
+        p {
+            font-size: 20px;
+        }
+    }
+}
