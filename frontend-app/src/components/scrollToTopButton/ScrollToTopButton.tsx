@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import "./style.css";
+import "./style.scss";
 
 export const ScrollToTopButton = () => {
     const [isShow, setIsShow] = useState(false);

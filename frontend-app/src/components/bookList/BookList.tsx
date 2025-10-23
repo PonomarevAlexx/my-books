@@ -1,6 +1,6 @@
 import { BookItem } from "../bookItem/BookItem";
 import type { BookShort } from "../../types/types";
-import "./style.css";
+import "./style.scss";
 
 interface BookList {
     bookList: BookShort[];

@@ -31,11 +31,25 @@
     color: rgb(70, 130, 169);
     font-size: 22px;
     transition: all 0.3s;
+
+    &:hover {
+        border: 1px solid rgb(246, 244, 235);
+        color: rgb(246, 244, 235);
+        background-color: rgb(70, 130, 169);
+        transition: all 0.3s;
+    }
 }
 
-.ScrollToTopButton:hover {
-    border: 1px solid rgb(246, 244, 235);
-    color: rgb(246, 244, 235);
-    background-color: rgb(70, 130, 169);
-    transition: all 0.3s;
+@media (max-width: 991px) {
+    .ScrollToTopButton {
+        bottom: 50px;
+        right: 25px;
+    }
+}
+
+@media (max-width: 767px) {
+    .ScrollToTopButton {
+        height: 50px;
+        width: 50px;
+    }
 }
