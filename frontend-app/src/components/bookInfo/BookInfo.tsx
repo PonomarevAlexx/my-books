@@ -76,7 +76,7 @@ const BookInfo: React.FC<BookInfo> = ({ book }) => {
                         <div className="bookInfo-characteristic-item-text">{book.year}</div>
                     </div>
                     <div className="bookInfo-characteristic-item">
-                        <div>Количество страциц:</div>
+                        <div>Количество страниц:</div>
                         <div className="bookInfo-characteristic-item-text">{book.quantityOfPages}</div>
                     </div>
                     <div className="bookInfo-characteristic-item">
