@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
-const LIMIT = 20;
+const LIMIT = 200;
 
 interface State {
     searchQuery: string;

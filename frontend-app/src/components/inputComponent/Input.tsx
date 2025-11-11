@@ -77,7 +77,7 @@ export const InputComponent = () => {
                     onChange={handleChange}
                 />
                 {query && (
-                    <button className="InputComponent-clear" onClick={handleResetFilteres}>
+                    <button type="button" className="InputComponent-clear" onClick={handleResetFilteres}>
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
                 )}
