@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 
 interface ButtonOptions {
     style: string;

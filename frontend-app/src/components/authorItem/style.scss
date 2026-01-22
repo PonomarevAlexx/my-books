@@ -1,0 +1,47 @@
+.AuthorItem {
+    border: 1px solid rgba(116, 155, 194, 0.2);
+    border-radius: 10px;
+    width: 280px;
+    height: 330px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+
+    &:hover {
+        cursor: pointer;
+        border: 1px solid rgba(116, 155, 194, 0.5);
+        transition: all 0.3s;
+        box-shadow: 4px 4px 10px rgba(116, 155, 194, 0.5);
+        transform: scale(1.01);
+    }
+
+    &-image {
+        height: 280px;
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+
+    &-text {
+        margin: 15px;
+    }
+
+    &-name {
+        margin: 0;
+        text-align: center;
+        color: rgb(70, 130, 169);
+        font-size: 18px;
+    }
+
+    &-link {
+        text-decoration: none;
+    }
+}

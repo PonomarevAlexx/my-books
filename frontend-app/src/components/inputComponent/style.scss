@@ -1,0 +1,66 @@
+.InputComponent {
+    position: relative;
+    width: 500px;
+
+    &-input {
+        font-size: 18px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 45px 12px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background-color: transparent;
+        color: #fff;
+        border-radius: 10px;
+        transition: border 0.3s;
+        font-family: "Segoe Print", "Bradley Hand", Chilanka, TSCu_Comic, casual, cursive;
+        font-weight: normal;
+
+        &:active,
+        &:focus {
+            outline: none;
+            border: 1px solid rgba(255, 255, 255, 1);
+            transition: border 0.3s;
+        }
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+        }
+    }
+
+    &-clear {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+        transition: color 0.3s;
+
+        &:hover {
+            color: rgba(255, 255, 255, 1);
+            transition: color 0.3s;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .InputComponent {
+        width: 350px;
+    }
+}
+
+@media (max-width: 575px) {
+    .InputComponent {
+        width: 250px;
+    }
+}
+
+@media (max-width: 375px) {
+    .InputComponent {
+        max-width: 150px;
+    }
+} 

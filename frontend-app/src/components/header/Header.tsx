@@ -3,9 +3,11 @@ import "./style.scss";
 import { InputComponent } from "../inputComponent/Input";
 import { useAppSelector } from "../../hooks/hooks";
 import { selectCurrentPage } from "../../store/slices/filters-slice";
+import { useState } from "react";
 
 export const Header = () => {
     const currentPage = useAppSelector(selectCurrentPage);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className="Header">
@@ -16,14 +18,16 @@ export const Header = () => {
                     </NavLink>
                 </div>
                 <InputComponent />
-                <nav className="Header-nav">
+                <nav className={!isOpen ? "Header-nav" : "Header-nav Header-nav-active"}>
                     <NavLink
+                        onClick={() => setIsOpen(false)}
                         className={currentPage === "books" ? "Header-nav-item active" : "Header-nav-item"}
                         to="/books"
                     >
                         Книги
                     </NavLink>
                     <NavLink
+                        onClick={() => setIsOpen(false)}
                         className={currentPage === "authors" ? "Header-nav-item active" : "Header-nav-item"}
                         to="/authors"
                     >
@@ -33,6 +37,9 @@ export const Header = () => {
                         Серии
                     </NavLink> */}
                 </nav>
+                <div className="Header-burgerBtn" onClick={() => setIsOpen(!isOpen)}>
+                    <span />
+                </div>
             </div>
         </div>
     );

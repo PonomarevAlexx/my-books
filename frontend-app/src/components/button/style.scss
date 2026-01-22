@@ -1,0 +1,42 @@
+.Button {
+    display: flex;
+
+    &_center {
+        justify-content: center;
+        align-items: center;
+    }
+
+    &_mb50 {
+        margin-bottom: 50px;
+    }
+
+    &-btn {
+        cursor: pointer;
+        font-size: 16px;
+        padding: 10px 25px;
+        background-color: transparent;
+        color: rgb(70, 130, 169);
+        border: 1px solid rgb(116, 155, 194);
+        border-radius: 10px;
+        transition: all 0.3s;
+        font-family: "Segoe Print", "Bradley Hand", Chilanka, TSCu_Comic, casual, cursive;
+        font-weight: normal;
+
+        &:hover {
+            background-color: rgb(70, 130, 169);
+            color: rgb(255, 255, 255);
+            transition: all 0.3s;
+        }
+    }
+}
+
+@media (hover: none) {
+    .Button {
+        &-btn {
+            &:hover {
+                background-color: transparent;
+                color: rgb(70, 130, 169);
+            }
+        }
+    }
+}

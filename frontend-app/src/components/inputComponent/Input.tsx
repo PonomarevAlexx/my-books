@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import useDebouncedValue from "../../hooks/useDebouncedValue";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import "./style.css";
+import "./style.scss";
 import {
     resetSearchQueryAndLimit,
     selectCurrentPage,

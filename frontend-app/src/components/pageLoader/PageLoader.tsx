@@ -1,5 +1,5 @@
 import { Loader } from "../loader/Loader";
-import "./style.css";
+import "./style.scss";
 
 export const PageLoader: React.FC = () => {
     return (

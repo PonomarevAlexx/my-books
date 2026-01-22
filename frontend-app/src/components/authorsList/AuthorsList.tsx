@@ -1,7 +1,7 @@
 import { useAppSelector } from "../../hooks/hooks";
 import { selectAllAuthors } from "../../store/slices/authors-slice";
 import { AuthorItem } from "../authorItem/AuthorItem";
-import "./style.css";
+import "./style.scss";
 
 const AuthorsList = () => {
     const authorsList = useAppSelector(selectAllAuthors);

@@ -1,6 +1,6 @@
 import type React from "react";
 import { Link } from "react-router";
-import "./style.css";
+import "./style.scss";
 import noPhoto from "../../img/noPhoto.png";
 
 interface AuthorItem {

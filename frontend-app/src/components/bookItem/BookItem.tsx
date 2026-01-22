@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import imgNotCover from "../../img/Not_image_book.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
-import "./style.css";
+import "./style.scss";
 
 type Book = {
     id: string;
