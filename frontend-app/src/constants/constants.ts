@@ -7,3 +7,5 @@ export const STATUS_LOADING: Status = {
     RESOLVED: "resolved",
     REJECTED: "rejected",
 };
+
+export const LIMIT = 20;

@@ -6,7 +6,7 @@
         font-size: 18px;
         width: 100%;
         box-sizing: border-box;
-        padding: 12px 45px 12px 12px;
+        padding: 12px;
         border: 1px solid rgba(255, 255, 255, 0.3);
         background-color: transparent;
         color: #fff;
@@ -53,6 +53,18 @@
     }
 }
 
+@media (max-width: 767px) {
+    .InputComponent {
+        &-input {
+            padding: 7px 12px;
+
+            &::placeholder {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
 @media (max-width: 575px) {
     .InputComponent {
         width: 250px;
@@ -63,4 +75,4 @@
     .InputComponent {
         max-width: 150px;
     }
-} 
+}

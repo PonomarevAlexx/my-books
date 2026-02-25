@@ -1,11 +1,10 @@
-const { MongoClient } = require("mongodb");
+import { MongoClient } from "mongodb";
 
-const URI = "mongodb://root:example@localhost:27017/";
-const client = new MongoClient(URI);
+const client = new MongoClient(process.env.URI);
 const nameDB = "library";
 let db;
 
-async function connectDB() {
+export async function connectDB() {
     try {
         // Подключаемся к серверу
         await client.connect();
@@ -22,9 +21,7 @@ async function connectDB() {
     }
 }
 
-function getDB() {
+export function getDB() {
     if (!db) throw new Error("Database not connected");
     return db;
 }
-
-module.exports = { connectDB, getDB };

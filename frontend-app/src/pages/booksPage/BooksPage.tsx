@@ -11,6 +11,7 @@ import { PageLoader } from "../../components/pageLoader/PageLoader";
 import { Button } from "../../components/button/Button";
 import { increaseLimit, selectLimit } from "../../store/slices/filters-slice";
 import BookList from "../../components/bookList/BookList";
+import { Select } from "@/components/select/Select";
 
 const BooksPage = () => {
     const dispatch = useAppDispatch();
@@ -29,7 +30,10 @@ const BooksPage = () => {
         <Layout>
             {statusLoading === "loading" && !isPagination ? <PageLoader /> : <BookList bookList={bookList} />}
             {lengthBooksList > limit ? (
-                <Button style="Button Button_center Button_mb50" text="Показать больше" handler={handleLimit} />
+                <>
+                    <Button style="Button Button_center Button_mb50" text="Показать больше" handler={handleLimit} />
+                    <Select />
+                </>
             ) : null}
         </Layout>
     );

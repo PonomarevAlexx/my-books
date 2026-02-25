@@ -10,6 +10,7 @@ import { PageLoader } from "../../components/pageLoader/PageLoader";
 import { Button } from "../../components/button/Button";
 import { increaseLimit, selectLimit } from "../../store/slices/filters-slice";
 import AuthorsList from "../../components/authorsList/AuthorsList";
+import { Select } from "@/components/select/Select";
 
 const AuthorsPage = () => {
     const dispatch = useAppDispatch();
@@ -28,7 +29,10 @@ const AuthorsPage = () => {
             {statusLoading === "loading" && !isPagination ? <PageLoader /> : <AuthorsList />}
 
             {lenghtAuthorsList > limit ? (
-                <Button style="Button Button_center Button_mb50" text="Показать больше" handler={handleLimit} />
+                <>
+                    <Button style="Button Button_center Button_mb50" text="Показать больше" handler={handleLimit} />
+                    <Select />
+                </>
             ) : null}
         </Layout>
     );
