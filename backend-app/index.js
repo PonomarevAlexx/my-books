@@ -4,6 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { connectDB } from "./db/mongoClient.js";
 import router from "./routes/index.js";
+import mongoose from "mongoose";
 
 const app = express();
 app.use(cors({ origin: "http://localhost:5173" }));
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 3000;
 async function startServer() {
     try {
         await connectDB();
+        await mongoose.connect(process.env.URL);
         app.use("/", router);
 
         app.listen(PORT, () => {

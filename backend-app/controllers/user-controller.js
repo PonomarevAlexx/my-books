@@ -1,7 +1,11 @@
-import { getDB } from "../db/mongoClient.js";
+import { registrationUser } from "../service/user-service.js";
 
 export async function registration(req, res) {
     try {
+        const { email, password } = req.body;
+        const userData = await registrationUser(email, password);
+        res.cookie("refreshToken", userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
+        return res.json(userData);
     } catch (error) {
         console.log(error);
     }
