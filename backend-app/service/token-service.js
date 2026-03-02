@@ -1,6 +1,24 @@
 import jwt from "jsonwebtoken";
 import { TokenModel } from "../models/token-model.js";
 
+export function validateAccessToken(token) {
+    try {
+        const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+        return userData;
+    } catch (error) {
+        return null;
+    }
+}
+
+export function validateRefreshToken(token) {
+    try {
+        const userData = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+        return userData;
+    } catch (error) {
+        return null;
+    }
+}
+
 export function generateTokens(payload) {
     const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: "30m" });
     const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: "30d" });
@@ -18,4 +36,14 @@ export async function saveToken(userId, refreshToken) {
     }
     const token = await TokenModel.create({ user: userId, refreshToken });
     return token;
+}
+
+export async function removeToken(refreshToken) {
+    const tokenData = await TokenModel.deleteOne({ refreshToken });
+    return tokenData;
+}
+
+export async function findToken(refreshToken) {
+    const tokenData = await TokenModel.findOne({ refreshToken });
+    return tokenData;
 }
