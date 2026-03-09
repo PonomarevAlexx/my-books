@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { booksReducer } from "./slices/books-slice";
-import { bookReducer } from "./slices/book-slice";
-import { authorsReducer } from "./slices/authors-slice";
-import { authorReducer } from "./slices/author-slice";
-import { filteresReducer } from "./slices/filters-slice";
+import { booksReducer } from "../features/books/model/booksSlice";
+import { bookReducer } from "../features/book/model/bookSlice";
+import { authorsReducer } from "../features/authors/model/authorsSlice";
+import { authorReducer } from "@/features/author/model/authorSlice";
+import { filteresReducer } from "../features/filters/model/filtersSlice";
 
 export const store = configureStore({
     reducer: {
@@ -17,3 +17,5 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+// При переходе со страницы книг лимит на авторах не сбрасывается на 20

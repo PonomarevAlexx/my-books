@@ -1,20 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { STATUS_LOADING, URL } from "../../constants/constants";
-import type { RootState } from "../store";
-
-interface State {
-    authorsList: Authors[];
-    status: string;
-    error: string;
-    length: number;
-    isPagination: boolean;
-}
-
-interface Authors {
-    _id: string;
-    name: string;
-    photo: string;
-}
+import { createSlice } from "@reduxjs/toolkit";
+import { STATUS_LOADING } from "../../../constants/constants";
+import type { State } from "./types";
+import { fetchAuthors } from "./authorsThunk";
 
 const initialState: State = {
     authorsList: [],
@@ -23,15 +10,6 @@ const initialState: State = {
     length: 0,
     isPagination: false,
 };
-
-export const fetchAuthors = createAsyncThunk(
-    "@authors/fetchAuthors",
-    async ({ searchQuery, limit }: { searchQuery?: string; limit?: number }) => {
-        const response = await fetch(`${URL}/authors/${limit}?search=${searchQuery}`);
-
-        return await response.json();
-    }
-);
 
 export const authorsSlice = createSlice({
     name: "authors",
@@ -64,21 +42,5 @@ export const authorsSlice = createSlice({
 });
 
 export const authorsReducer = authorsSlice.reducer;
-
-export const selectAllAuthors = (state: RootState) => {
-    return state.authors.authorsList;
-};
-
-export const selectStatusLoading = (state: RootState) => {
-    return state.authors.status;
-};
-
-export const selectLengthAuthorsList = (state: RootState) => {
-    return state.authors.length;
-};
-
-export const selectIsPagination = (state: RootState) => {
-    return state.authors.isPagination;
-};
 
 export const { setIsPagination } = authorsSlice.actions;

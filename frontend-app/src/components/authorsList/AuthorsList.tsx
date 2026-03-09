@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../hooks/hooks";
-import { selectAllAuthors } from "../../store/slices/authors-slice";
+import { selectAllAuthors } from "../../features/authors/model/selectors";
 import { AuthorItem } from "../authorItem/AuthorItem";
 import "./style.scss";
 

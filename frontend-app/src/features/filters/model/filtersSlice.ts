@@ -1,19 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { RootState } from "../store";
-import { LIMIT } from "../../constants/constants";
+import type { State } from "./types";
 
-interface State {
-    searchQuery: string;
-    limit: number;
-    currentPage: "authors" | "books" | null;
-    perPage: number;
-}
-
+const limit = import.meta.env.VITE_LIMIT_PER_PAGE;
 const initialState: State = {
     searchQuery: "",
-    limit: LIMIT,
+    limit: limit,
     currentPage: null,
-    perPage: LIMIT,
+    perPage: limit,
 };
 
 export const filteresSlice = createSlice({
@@ -33,6 +26,8 @@ export const filteresSlice = createSlice({
         },
         setCurrentPage: (state, action) => {
             state.currentPage = action.payload;
+            state.perPage = limit;
+            state.limit = limit;
         },
         setPerPage: (state, action) => {
             state.perPage = action.payload;
@@ -42,18 +37,6 @@ export const filteresSlice = createSlice({
 });
 
 export const filteresReducer = filteresSlice.reducer;
-
-export const selectSearchQuery = (state: RootState) => {
-    return state.filteres.searchQuery;
-};
-
-export const selectLimit = (state: RootState) => {
-    return state.filteres.limit;
-};
-
-export const selectCurrentPage = (state: RootState) => {
-    return state.filteres.currentPage;
-};
 
 export const { increaseLimit, setSearchQuery, resetSearchQueryAndLimit, setCurrentPage, setPerPage } =
     filteresSlice.actions;

@@ -1,25 +1,13 @@
-import type { RootState } from "../store";
-import type { Book } from "../../types/types";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { URL, STATUS_LOADING } from "../../constants/constants";
-
-type State = {
-    book: Book | null;
-    status: string;
-    error: string;
-};
+import type { State } from "./types";
+import { createSlice } from "@reduxjs/toolkit";
+import { STATUS_LOADING } from "../../../constants/constants";
+import { fetchBook } from "./bookThunks";
 
 const initialState: State = {
     book: null,
     status: "",
     error: "",
 };
-
-export const fetchBook = createAsyncThunk("@book/fetchBook", async (id: string) => {
-    const response = await fetch(`${URL}/book/${id}`);
-
-    return await response.json();
-});
 
 export const bookSlice = createSlice({
     name: "book",
@@ -45,11 +33,3 @@ export const bookSlice = createSlice({
 });
 
 export const bookReducer = bookSlice.reducer;
-
-export const selectBook = (state: RootState) => {
-    return state.book.book;
-};
-
-export const selectStatusLoading = (state: RootState) => {
-    return state.book.status;
-};

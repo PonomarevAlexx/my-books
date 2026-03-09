@@ -3,8 +3,9 @@ import AuthorInfo from "../../components/authorInfo/AuthorInfo";
 import { Layout } from "../../components/layout/Layout";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useParams } from "react-router";
-import { fetchAuthor, selectAuthor, selectStatus } from "../../store/slices/author-slice";
-import type { Author } from "../../types/types";
+import { fetchAuthor } from "@/features/author/model/authorThunk";
+import { selectAuthor, selectStatus } from "@/features/author/model/selectors";
+import type { Author } from "@/features/author/model/types";
 import { PageLoader } from "../../components/pageLoader/PageLoader";
 
 const AuthorPage = () => {
@@ -13,7 +14,7 @@ const AuthorPage = () => {
 
     useEffect(() => {
         if (id) {
-            dispatch(fetchAuthor(id));
+            dispatch(fetchAuthor({ id }));
         }
     }, [dispatch, id]);
 

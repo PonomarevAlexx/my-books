@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import "./style.scss";
 import { InputComponent } from "../inputComponent/Input";
 import { useAppSelector } from "../../hooks/hooks";
-import { selectCurrentPage } from "../../store/slices/filters-slice";
+import { selectCurrentPage } from "@/features/filters/model/selectors";
 import { useState } from "react";
 
 export const Header = () => {

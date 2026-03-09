@@ -1,17 +1,18 @@
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { setIsPagination } from "../../features/books/model/booksSlice";
+import { Layout } from "../../components/layout/Layout";
+import { PageLoader } from "../../components/pageLoader/PageLoader";
+import { Button } from "../../components/button/Button";
+import { increaseLimit } from "@/features/filters/model/filtersSlice";
+import { selectLimit } from "@/features/filters/model/selectors";
+import BookList from "../../components/bookList/BookList";
+import { Select } from "@/components/select/Select";
 import {
     selectAllBooks,
     selectIsPagination,
     selectLengthBooksList,
     selectStatusLoading,
-    setIsPagination,
-} from "../../store/slices/books-slice";
-import { Layout } from "../../components/layout/Layout";
-import { PageLoader } from "../../components/pageLoader/PageLoader";
-import { Button } from "../../components/button/Button";
-import { increaseLimit, selectLimit } from "../../store/slices/filters-slice";
-import BookList from "../../components/bookList/BookList";
-import { Select } from "@/components/select/Select";
+} from "@/features/books/model/selectors";
 
 const BooksPage = () => {
     const dispatch = useAppDispatch();

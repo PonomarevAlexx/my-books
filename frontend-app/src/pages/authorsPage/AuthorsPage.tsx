@@ -1,14 +1,11 @@
 import { Layout } from "../../components/layout/Layout";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import {
-    selectIsPagination,
-    selectLengthAuthorsList,
-    selectStatusLoading,
-    setIsPagination,
-} from "../../store/slices/authors-slice";
-import { PageLoader } from "../../components/pageLoader/PageLoader";
+import { selectIsPagination, selectLengthAuthorsList, selectStatusLoading } from "@/features/authors/model/selectors";
+import { setIsPagination } from "@/features/authors/model/authorsSlice";
+import { PageLoader } from "@/components/pageLoader/PageLoader";
 import { Button } from "../../components/button/Button";
-import { increaseLimit, selectLimit } from "../../store/slices/filters-slice";
+import { increaseLimit } from "@/features/filters/model/filtersSlice";
+import { selectLimit } from "@/features/filters/model/selectors";
 import AuthorsList from "../../components/authorsList/AuthorsList";
 import { Select } from "@/components/select/Select";
 

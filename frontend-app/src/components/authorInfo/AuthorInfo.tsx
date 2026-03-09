@@ -1,10 +1,10 @@
-import type { Author } from "@/types/types";
+import type { Author } from "@/features/author/model/types";
 import { ReadMoreDescription } from "../readMoreDescription/ReadMoreDescription";
 import "./style.scss";
 import noPhoto from "@/img/noPhoto.png";
 import BookList from "../bookList/BookList";
 import { useAppSelector } from "@/hooks/hooks";
-import { selectLength, selectListBooksOfAuthor } from "@/store/slices/author-slice";
+import { selectLength, selectListBooksOfAuthor } from "@/features/author/model/selectors";
 import { Button } from "../button/Button";
 import { useState } from "react";
 

@@ -1,15 +1,7 @@
-import type { RootState } from "../store";
-import type { BookShort } from "../../types/types";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { URL, STATUS_LOADING } from "../../constants/constants";
-
-type State = {
-    bookList: BookShort[];
-    status: string;
-    error: string;
-    length: number;
-    isPagination: boolean;
-};
+import type { State } from "./types";
+import { createSlice } from "@reduxjs/toolkit";
+import { STATUS_LOADING } from "../../../constants/constants";
+import { fetchBooks } from "./booksThunks";
 
 const initialState: State = {
     bookList: [],
@@ -18,15 +10,6 @@ const initialState: State = {
     length: 0,
     isPagination: false,
 };
-
-export const fetchBooks = createAsyncThunk(
-    "@books/fetchBooks",
-    async ({ searchQuery, limit }: { searchQuery?: string; limit?: number }) => {
-        const response = await fetch(`${URL}/books/${limit}?search=${searchQuery}`);
-
-        return await response.json();
-    }
-);
 
 export const booksSlice = createSlice({
     name: "books",
@@ -59,21 +42,5 @@ export const booksSlice = createSlice({
 });
 
 export const booksReducer = booksSlice.reducer;
-
-export const selectAllBooks = (state: RootState) => {
-    return state.books.bookList;
-};
-
-export const selectStatusLoading = (state: RootState) => {
-    return state.books.status;
-};
-
-export const selectLengthBooksList = (state: RootState) => {
-    return state.books.length;
-};
-
-export const selectIsPagination = (state: RootState) => {
-    return state.books.isPagination;
-};
 
 export const { setIsPagination } = booksSlice.actions;

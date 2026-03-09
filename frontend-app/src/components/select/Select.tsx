@@ -1,4 +1,4 @@
-import { setPerPage } from "@/store/slices/filters-slice";
+import { setPerPage } from "@/features/filters/model/filtersSlice";
 import type { ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 import "./style.scss";

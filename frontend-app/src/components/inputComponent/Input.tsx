@@ -5,16 +5,10 @@ import useDebouncedValue from "../../hooks/useDebouncedValue";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
-import {
-    resetSearchQueryAndLimit,
-    selectCurrentPage,
-    selectLimit,
-    selectSearchQuery,
-    setCurrentPage,
-    setSearchQuery,
-} from "../../store/slices/filters-slice";
-import { fetchAuthors } from "../../store/slices/authors-slice";
-import { fetchBooks } from "../../store/slices/books-slice";
+import { resetSearchQueryAndLimit, setCurrentPage, setSearchQuery } from "../../features/filters/model/filtersSlice";
+import { selectCurrentPage, selectLimit, selectSearchQuery } from "@/features/filters/model/selectors";
+import { fetchAuthors } from "@/features/authors/model/authorsThunk";
+import { fetchBooks } from "@/features/books/model/booksThunks";
 
 export const InputComponent = () => {
     const location = useLocation();
