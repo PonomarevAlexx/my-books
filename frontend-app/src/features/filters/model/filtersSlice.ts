@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { State } from "./types";
 
-const limit = import.meta.env.VITE_LIMIT_PER_PAGE;
+const limit = Number(import.meta.env.VITE_LIMIT_PER_PAGE);
 const initialState: State = {
     searchQuery: "",
     limit: limit,

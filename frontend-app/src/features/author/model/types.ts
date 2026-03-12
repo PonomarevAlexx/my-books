@@ -11,7 +11,6 @@ export interface State {
 export interface Author {
     _id: string;
     name: string;
-    works: Work[];
     birth: string;
     death: string;
     country: string;

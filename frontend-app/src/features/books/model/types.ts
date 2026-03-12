@@ -1,11 +1,13 @@
-import type { Author } from "@/types/types";
-
 export interface BookShort {
     _id: string;
-    title: string[];
+    titles: string[];
     author: Author[];
     cover: string;
-    isRead: boolean;
+}
+
+interface Author {
+    id: string;
+    name: string;
 }
 
 export type State = {

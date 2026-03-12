@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import imgNotCover from "../../img/Not_image_book.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
 
 type Book = {
@@ -9,18 +9,17 @@ type Book = {
     cover: string;
     title: string;
     author: string;
-    isRead: boolean;
 };
 
-export const BookItem: React.FC<Book> = ({ cover, title, author, id, isRead }) => {
+export const BookItem: React.FC<Book> = ({ cover, title, author, id }) => {
     return (
         <Link to={`/book/${id}`}>
             <div className="bookItem">
-                {isRead && (
+                {/* {isRead && (
                     <div className="bookItem-icon">
                         <FontAwesomeIcon icon={faCircleCheck} />
                     </div>
-                )}
+                )} */}
                 <div className="bookItem-img">
                     <img src={cover || imgNotCover} alt={title} loading="lazy"></img>
                 </div>

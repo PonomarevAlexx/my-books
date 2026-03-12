@@ -1,7 +1,7 @@
-import type { Book } from "../../types/types";
+import type { Book } from "@/features/book/model/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+// import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
 import imgNotCover from "../../img/Not_image_book.png";
 import { BookInfoAuthorLinks } from "../bookInfoAuthorLinks/BookInfoAuthorLinks";
@@ -13,7 +13,7 @@ interface BookInfo {
 
 const BookInfo: React.FC<BookInfo> = ({ book }) => {
     const firstAuthor = book.author[0].name;
-    const title = book.title.map((el) => `"${el}"`).join(", ");
+    const title = book.titles.map((el) => `"${el}"`).join(", ");
     const bookSeries = book.bookSeries.name;
     const [copied, setCopied] = useState(false);
 
@@ -42,11 +42,11 @@ const BookInfo: React.FC<BookInfo> = ({ book }) => {
             <h3 className="bookInfo-title">{`${firstAuthor}: ${title}`}</h3>
             <div className="bookInfo-row">
                 <div className="bookInfo-img">
-                    {book.isRead && (
+                    {/* {book.isRead && (
                         <div className="bookInfo-img-icon">
                             <FontAwesomeIcon icon={faCircleCheck} />
                         </div>
-                    )}
+                    )} */}
                     <img src={book.cover || imgNotCover} alt={title} />
                 </div>
                 <div className="bookInfo-characteristic">

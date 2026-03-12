@@ -8,7 +8,7 @@ export type State = {
 
 export interface Book {
     _id: string;
-    title: string[];
+    titles: string[];
     author: AuthorFromBook[];
     year: number;
     bookSeries: BookSeries;
@@ -16,7 +16,6 @@ export interface Book {
     publisher: string;
     ISBN: string;
     cover: string;
-    isRead: boolean;
     section: string;
     bookBinding: string;
     paper: string;

@@ -1,5 +1,5 @@
 import { BookItem } from "../bookItem/BookItem";
-import type { BookShort } from "../../types/types";
+import type { BookShort } from "@/features/books/model/types";
 import "./style.scss";
 
 interface BookList {
@@ -14,9 +14,8 @@ const BookList: React.FC<BookList> = ({ bookList }) => {
                     id={el._id}
                     key={el._id}
                     cover={el.cover}
-                    title={el.title.map((el) => "«" + el + "»").join(", ")}
+                    title={el.titles.map((el) => "«" + el + "»").join(", ")}
                     author={el.author[0].name}
-                    isRead={el.isRead}
                 />
             ))}
         </div>

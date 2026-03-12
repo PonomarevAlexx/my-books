@@ -8,4 +8,4 @@ const BookSeriesSchema = new Schema(
     { timestamps: true },
 );
 
-export const BookSeriesModel = model("BookSeries", BookSeriesSchema);
+export const BookSeriesModel = model("BookSeries", BookSeriesSchema, "series");
