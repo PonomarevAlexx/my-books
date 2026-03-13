@@ -8,6 +8,7 @@ import { Footer } from "./components/footer/Footer";
 import { AuthorsPageLazy } from "./pages/authorsPage/AuthorsPage.lazy";
 import { AuthorPageLazy } from "./pages/authorInfoPage/AuthorInfoPage.lazy";
 import { ScrollToTopButton } from "./components/scrollToTopButton/ScrollToTopButton";
+import { LoginPageLazy } from "./pages/loginPage/LoginPage.lazy";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Route path={"/book/:id"} element={<BookInfoPageLazy />} />
                     <Route path={"/authors"} element={<AuthorsPageLazy />} />
                     <Route path={"/author/:id"} element={<AuthorPageLazy />} />
+                    <Route path={"/login"} element={<LoginPageLazy />} />
                 </Routes>
             </Suspense>
             <ScrollToTopButton />

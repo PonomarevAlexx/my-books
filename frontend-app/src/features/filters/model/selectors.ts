@@ -7,7 +7,3 @@ export const selectSearchQuery = (state: RootState) => {
 export const selectLimit = (state: RootState) => {
     return state.filteres.limit;
 };
-
-export const selectCurrentPage = (state: RootState) => {
-    return state.filteres.currentPage;
-};

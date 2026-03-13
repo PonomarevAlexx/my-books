@@ -5,7 +5,6 @@ const limit = Number(import.meta.env.VITE_LIMIT_PER_PAGE);
 const initialState: State = {
     searchQuery: "",
     limit: limit,
-    currentPage: null,
     perPage: limit,
 };
 
@@ -24,8 +23,7 @@ export const filteresSlice = createSlice({
             state.searchQuery = "";
             state.limit = state.perPage;
         },
-        setCurrentPage: (state, action) => {
-            state.currentPage = action.payload;
+        resetLimit: (state) => {
             state.perPage = limit;
             state.limit = limit;
         },
@@ -38,5 +36,5 @@ export const filteresSlice = createSlice({
 
 export const filteresReducer = filteresSlice.reducer;
 
-export const { increaseLimit, setSearchQuery, resetSearchQueryAndLimit, setCurrentPage, setPerPage } =
+export const { increaseLimit, setSearchQuery, resetSearchQueryAndLimit, resetLimit, setPerPage } =
     filteresSlice.actions;

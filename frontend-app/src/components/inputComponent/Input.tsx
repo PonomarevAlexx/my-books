@@ -5,8 +5,8 @@ import useDebouncedValue from "../../hooks/useDebouncedValue";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
-import { resetSearchQueryAndLimit, setCurrentPage, setSearchQuery } from "../../features/filters/model/filtersSlice";
-import { selectCurrentPage, selectLimit, selectSearchQuery } from "@/features/filters/model/selectors";
+import { resetSearchQueryAndLimit, setSearchQuery } from "../../features/filters/model/filtersSlice";
+import { selectLimit, selectSearchQuery } from "@/features/filters/model/selectors";
 import { fetchAuthors } from "@/features/authors/model/authorsThunk";
 import { fetchBooks } from "@/features/books/model/booksThunks";
 
@@ -18,19 +18,10 @@ export const InputComponent = () => {
     const [query, setQuery] = useState("");
     const debouncedQuery = useDebouncedValue(query, 500);
     const limit = useAppSelector(selectLimit);
-    const currentPage = useAppSelector(selectCurrentPage);
 
     useEffect(() => {
         dispatch(resetSearchQueryAndLimit());
         setQuery("");
-
-        if (pathName === "/books") {
-            dispatch(setCurrentPage("books"));
-        } else if (pathName === "/authors") {
-            dispatch(setCurrentPage("authors"));
-        } else {
-            dispatch(setCurrentPage(null));
-        }
     }, [dispatch, pathName]);
 
     useEffect(() => {
@@ -38,12 +29,12 @@ export const InputComponent = () => {
     }, [dispatch, debouncedQuery]);
 
     useEffect(() => {
-        if (currentPage === "books") {
+        if (pathName === "/books") {
             dispatch(fetchBooks({ searchQuery: searchQuery, limit }));
-        } else if (currentPage === "authors") {
+        } else if (pathName === "/authors") {
             dispatch(fetchAuthors({ searchQuery: searchQuery, limit }));
         }
-    }, [dispatch, limit, searchQuery, currentPage]);
+    }, [dispatch, limit, searchQuery, pathName]);
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

@@ -4,25 +4,49 @@ import { BookSeriesModel } from "../models/series-model.js";
 import { ObjectId } from "mongodb";
 
 export async function getBooks(limit, search) {
-    let query = {};
+    const pipeline = [
+        {
+            $lookup: {
+                from: "authors",
+                localField: "author",
+                foreignField: "_id",
+                as: "author",
+            },
+        },
+    ];
 
     if (search) {
-        query = {
-            $or: [
-                { title: { $regex: search, $options: "i" } },
-                { "author.name": { $regex: search, $options: "i" } },
-                // { "bookSeries.name": { $regex: search, $options: "i" } },
-            ],
-        };
+        pipeline.push({
+            $match: {
+                $or: [
+                    { titles: { $elemMatch: { $regex: search, $options: "i" } } },
+                    { "author.name": { $regex: search, $options: "i" } },
+                ],
+            },
+        });
     }
 
-    const length = await BookModel.countDocuments(query);
-    const books = await BookModel.find(query)
-        .select("titles author cover")
-        .populate("author", "name")
-        .limit(Number(limit));
+    pipeline.push({
+        $facet: {
+            books: [
+                {
+                    $project: {
+                        titles: 1,
+                        cover: 1,
+                        author: { name: 1 },
+                    },
+                },
+                { $limit: Number(limit) },
+            ],
+            total: [{ $count: "count" }],
+        },
+    });
 
-    return { length, books };
+    const result = await BookModel.aggregate(pipeline);
+    const books = result[0].books;
+    const length = result[0].total[0]?.count || 0;
+
+    return { books, length };
 }
 
 export async function getOneBook(id) {
