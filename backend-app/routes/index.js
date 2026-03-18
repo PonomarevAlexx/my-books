@@ -7,13 +7,13 @@ import authMiddleware from "../middlewares/auth-middleware.js";
 const router = Router();
 
 // Получить всех книг
-router.get("/books/:limit", getAllBooks);
+router.get("/books/", getAllBooks);
 
 // Получить книгу по ID
 router.get("/book/:id", getBookById);
 
 // Получить всех авторов
-router.get("/authors/:limit", getAllAuthors);
+router.get("/authors/", getAllAuthors);
 
 // Получить автора по ID
 router.get("/author/:id", getAuthorById);

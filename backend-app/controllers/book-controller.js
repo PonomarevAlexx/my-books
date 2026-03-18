@@ -2,10 +2,10 @@ import { getBooks, getOneBook } from "../service/books-service.js";
 
 export async function getAllBooks(req, res, next) {
     try {
-        const { limit } = req.params;
-        const search = req.query.search || "";
+        const { limit, page, search } = req.query;
+        const recordLimit = limit * page;
 
-        const data = await getBooks(limit, search);
+        const data = await getBooks(recordLimit, search);
 
         return res.json(data);
     } catch (error) {

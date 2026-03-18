@@ -4,20 +4,26 @@ import { selectIsPagination, selectLengthAuthorsList, selectStatusLoading } from
 import { setIsPagination } from "@/features/authors/model/authorsSlice";
 import { PageLoader } from "@/components/pageLoader/PageLoader";
 import { Button } from "../../components/button/Button";
-import { increaseLimit } from "@/features/filters/model/filtersSlice";
-import { selectLimit } from "@/features/filters/model/selectors";
 import AuthorsList from "../../components/authorsList/AuthorsList";
 import { Select } from "@/components/select/Select";
+import { useQueryFilteres } from "@/hooks/useQueryFilteres";
+import { useEffect } from "react";
+import { fetchAuthors } from "@/features/authors/model/authorsThunk";
 
 const AuthorsPage = () => {
     const dispatch = useAppDispatch();
-    const limit = useAppSelector(selectLimit);
     const lenghtAuthorsList = useAppSelector(selectLengthAuthorsList);
     const statusLoading = useAppSelector(selectStatusLoading);
     const isPagination = useAppSelector(selectIsPagination);
+    const { nextPage, page, limit, search } = useQueryFilteres();
+    const recordLimit = page * limit;
+
+    useEffect(() => {
+        dispatch(fetchAuthors({ searchQuery: search, limit, page }));
+    }, [dispatch, limit, search, page]);
 
     const handleLimit = () => {
-        dispatch(increaseLimit());
+        nextPage();
         dispatch(setIsPagination());
     };
 
@@ -25,9 +31,14 @@ const AuthorsPage = () => {
         <Layout>
             {statusLoading === "loading" && !isPagination ? <PageLoader /> : <AuthorsList />}
 
-            {lenghtAuthorsList > limit ? (
+            {lenghtAuthorsList > 0 ? (
                 <>
-                    <Button style="Button Button_center Button_mb50" text="Показать больше" handler={handleLimit} />
+                    <Button
+                        disabled={lenghtAuthorsList < recordLimit ? true : false}
+                        style="Button Button_center Button_mb50"
+                        text="Показать больше"
+                        handler={handleLimit}
+                    />
                     <Select />
                 </>
             ) : null}

@@ -2,12 +2,12 @@ import { getAuthors, getOneAuthor } from "../service/author-service.js";
 
 export async function getAllAuthors(req, res) {
     try {
-        const { limit } = req.params;
-        const search = req.query.search || "";
+        const { limit, search, page } = req.query;
+        const recordLimit = limit * page;
 
-        const data = await getAuthors(limit, search);
+        const data = await getAuthors(recordLimit, search);
 
-        res.json(data);
+        return res.json(data);
     } catch (error) {
         console.log(error);
     }

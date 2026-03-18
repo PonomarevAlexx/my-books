@@ -21,6 +21,7 @@ export type State = {
 export interface FetchBookArgs {
     searchQuery?: string;
     limit?: number;
+    page?: number;
 }
 
 export interface FetchBooksResponse {

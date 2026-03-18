@@ -20,4 +20,5 @@ export interface FetchAuthorsResponse {
 export interface FetchAuthorsArgs {
     searchQuery?: string;
     limit?: number;
+    page?: number
 }

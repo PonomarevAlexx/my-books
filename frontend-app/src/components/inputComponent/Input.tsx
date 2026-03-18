@@ -1,40 +1,29 @@
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import useDebouncedValue from "../../hooks/useDebouncedValue";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
-import { resetSearchQueryAndLimit, setSearchQuery } from "../../features/filters/model/filtersSlice";
-import { selectLimit, selectSearchQuery } from "@/features/filters/model/selectors";
-import { fetchAuthors } from "@/features/authors/model/authorsThunk";
-import { fetchBooks } from "@/features/books/model/booksThunks";
+import { useQueryFilteres } from "@/hooks/useQueryFilteres";
 
 export const InputComponent = () => {
     const location = useLocation();
     const pathName = location.pathname;
-    const dispatch = useAppDispatch();
-    const searchQuery = useAppSelector(selectSearchQuery);
-    const [query, setQuery] = useState("");
+
+    const { search, setSearch, resetFilters } = useQueryFilteres();
+
+    const [query, setQuery] = useState(search);
+
     const debouncedQuery = useDebouncedValue(query, 500);
-    const limit = useAppSelector(selectLimit);
 
     useEffect(() => {
-        dispatch(resetSearchQueryAndLimit());
-        setQuery("");
-    }, [dispatch, pathName]);
+        setQuery(search);
+    }, [search]);
 
     useEffect(() => {
-        dispatch(setSearchQuery(debouncedQuery));
-    }, [dispatch, debouncedQuery]);
-
-    useEffect(() => {
-        if (pathName === "/books") {
-            dispatch(fetchBooks({ searchQuery: searchQuery, limit }));
-        } else if (pathName === "/authors") {
-            dispatch(fetchAuthors({ searchQuery: searchQuery, limit }));
-        }
-    }, [dispatch, limit, searchQuery, pathName]);
+        setSearch(debouncedQuery);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [debouncedQuery]);
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -45,7 +34,7 @@ export const InputComponent = () => {
     };
 
     const handleResetFilteres = () => {
-        dispatch(resetSearchQueryAndLimit());
+        resetFilters();
         setQuery("");
     };
 

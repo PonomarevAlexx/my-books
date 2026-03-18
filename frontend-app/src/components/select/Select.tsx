@@ -1,13 +1,12 @@
-import { setPerPage } from "@/features/filters/model/filtersSlice";
 import type { ChangeEvent } from "react";
-import { useDispatch } from "react-redux";
 import "./style.scss";
+import { useQueryFilteres } from "@/hooks/useQueryFilteres";
 
 export const Select = () => {
-    const dispatch = useDispatch();
+    const {  setLimit, limit } = useQueryFilteres();
 
     const handlePerPage = (event: ChangeEvent<HTMLSelectElement>) => {
-        dispatch(setPerPage(+event.target.value));
+        setLimit(Number(event.target.value))
         window.scrollTo({
             top: 0,
             behavior: "smooth",
@@ -15,7 +14,7 @@ export const Select = () => {
     };
 
     return (
-        <select name="limitPerPage" className="Select" onChange={handlePerPage}>
+        <select value={limit} name="limitPerPage" className="Select" onChange={handlePerPage}>
             <option value={20}>20</option>
             <option value={40}>40</option>
             <option value={60}>60</option>

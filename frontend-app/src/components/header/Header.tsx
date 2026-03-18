@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 import "./style.scss";
 import { InputComponent } from "../inputComponent/Input";
 import { useState } from "react";

@@ -1,5 +1,5 @@
-export interface State {
-    searchQuery: string;
-    limit: number;
-    perPage: number;
-}
+// export interface State {
+//     searchQuery: string;
+//     limit: number;
+//     perPage: number;
+// }
