@@ -1,0 +1,43 @@
+.Input {
+    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    background-color: transparent;
+    border-radius: 10px;
+    transition: border 0.3s;
+    font-family: "Segoe Print", "Bradley Hand", Chilanka, TSCu_Comic, casual, cursive;
+    font-weight: normal;
+
+    &-search {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #fff;
+        &:active,
+        &:focus {
+            outline: none;
+            border: 1px solid rgba(255, 255, 255, 1);
+            transition: border 0.3s;
+        }
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+    }
+
+    &-login {
+        border: 2px solid rgba(70, 130, 169, 0.4);
+        caret-color: rgba(70, 130, 169, 1);
+        color: rgba(70, 130, 169, 1);
+        
+
+        &:active,
+        &:focus {
+            outline: none;
+            border: 2px solid rgba(70, 130, 169, 1);
+            transition: border 0.3s;
+        }
+        &::placeholder {
+            color: rgba(70, 130, 169, 0.6);
+        }
+    }
+}

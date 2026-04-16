@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
 import { useQueryFilteres } from "@/hooks/useQueryFilteres";
+import Input from "../input/Input";
 
-export const InputComponent = () => {
+export const Search = () => {
     const location = useLocation();
     const pathName = location.pathname;
 
@@ -41,14 +42,16 @@ export const InputComponent = () => {
     if (pathName === "/books" || pathName === "/authors") {
         return (
             <form className="InputComponent" onSubmit={handleSearch}>
-                <input
-                    className="InputComponent-input"
+                <Input
+                    style="Input Input-search"
                     placeholder={
                         pathName === "/books" ? "Введите имя автора или название произведения" : "Введите имя автора"
                     }
                     type="text"
                     value={query}
-                    onChange={handleChange}
+                    handle={handleChange}
+                    id="searchInput"
+                    name="search"
                 />
                 {query && (
                     <button type="button" className="InputComponent-clear" onClick={handleResetFilteres}>

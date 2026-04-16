@@ -68,11 +68,10 @@ export async function refreshUserToken(refreshToken) {
     }
 
     const userData = validateRefreshToken(refreshToken);
-    const tokenFomDb = await findToken(refreshToken);
-    if (!userData || !tokenFomDb) {
+    const tokenFromDb = await findToken(refreshToken);
+    if (!userData || !tokenFromDb) {
         throw ApiError.UnauthorizedError();
     }
-
     const user = await UserModel.findById(userData.id);
     const userDto = new UserDto(user);
     const tokens = generateTokens({ ...userDto });

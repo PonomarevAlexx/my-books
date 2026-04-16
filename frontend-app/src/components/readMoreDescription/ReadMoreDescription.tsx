@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./style.scss";
 import { Button } from "../button/Button";
+import { ButtonLayout } from "../buttonLayout/ButtonLayout";
 
 interface Description {
     description: string;
@@ -20,11 +21,14 @@ export const ReadMoreDescription: React.FC<Description> = ({ description }) => {
         <>
             {description.length < 500 || showMore ? fullDescription : shortDescription}
             {description.length > 500 && (
-                <Button
-                    style="Button Button_center"
-                    text={!showMore ? "Показать больше" : "Показать меньше"}
-                    handler={toggleReadMore}
-                />
+                <ButtonLayout className="ButtonLayout_center">
+                    <Button
+                        variant="light"
+                        disabled={false}
+                        text={!showMore ? "Показать больше" : "Показать меньше"}
+                        onClick={toggleReadMore}
+                    />
+                </ButtonLayout>
             )}
         </>
     );

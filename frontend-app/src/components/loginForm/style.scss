@@ -1,0 +1,30 @@
+.LoginForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 300px);
+    width: 100%;
+
+    &-form {
+        min-width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &-item {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+
+        &-label {
+            color: $primary-color;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+    }
+    &-control {
+        display: flex;
+        justify-content: space-between;
+    }
+}
