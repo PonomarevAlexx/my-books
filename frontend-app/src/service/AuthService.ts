@@ -1,5 +1,5 @@
 import $api from "@/http";
-import type { AuthResponse } from "@/models/response/AuthResponse";
+import type { AuthResponse } from "@/features/user/model/types";
 import type { AxiosResponse } from "axios";
 
 export async function login(email: string, password: string): Promise<AuthResponse> {

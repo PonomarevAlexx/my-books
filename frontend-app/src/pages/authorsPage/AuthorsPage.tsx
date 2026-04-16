@@ -4,6 +4,7 @@ import { selectIsPagination, selectLengthAuthorsList, selectStatusLoading } from
 import { setIsPagination } from "@/features/authors/model/authorsSlice";
 import { PageLoader } from "@/components/pageLoader/PageLoader";
 import { Button } from "../../components/button/Button";
+import { ButtonLayout } from "@/components/buttonLayout/ButtonLayout";
 import AuthorsList from "../../components/authorsList/AuthorsList";
 import { Select } from "@/components/select/Select";
 import { useQueryFilteres } from "@/hooks/useQueryFilteres";
@@ -33,12 +34,14 @@ const AuthorsPage = () => {
 
             {lenghtAuthorsList > 0 ? (
                 <>
-                    <Button
-                        disabled={lenghtAuthorsList < recordLimit ? true : false}
-                        style="Button Button_center Button_mb50"
-                        text="Показать больше"
-                        handler={handleLimit}
-                    />
+                    <ButtonLayout className="ButtonLayout_center ButtonLayout_mb50">
+                        <Button
+                            variant="light"
+                            disabled={lenghtAuthorsList < recordLimit ? true : false}
+                            text="Показать больше"
+                            onClick={handleLimit}
+                        />
+                    </ButtonLayout>
                     <Select />
                 </>
             ) : null}

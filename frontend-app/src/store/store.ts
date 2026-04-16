@@ -3,7 +3,7 @@ import { booksReducer } from "../features/books/model/booksSlice";
 import { bookReducer } from "../features/book/model/bookSlice";
 import { authorsReducer } from "../features/authors/model/authorsSlice";
 import { authorReducer } from "@/features/author/model/authorSlice";
-// import { filteresReducer } from "../features/filters/model/filtersSlice";
+import { userReducer } from "@/features/user/model/userSlice";
 
 export const store = configureStore({
     reducer: {
@@ -11,7 +11,7 @@ export const store = configureStore({
         book: bookReducer,
         authors: authorsReducer,
         author: authorReducer,
-        // filteres: filteresReducer,
+        user: userReducer,
     },
 });
 

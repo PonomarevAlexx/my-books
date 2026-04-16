@@ -3,6 +3,7 @@ import { setIsPagination } from "../../features/books/model/booksSlice";
 import { Layout } from "../../components/layout/Layout";
 import { PageLoader } from "../../components/pageLoader/PageLoader";
 import { Button } from "../../components/button/Button";
+import { ButtonLayout } from "@/components/buttonLayout/ButtonLayout";
 import BookList from "../../components/bookList/BookList";
 import { Select } from "@/components/select/Select";
 import {
@@ -39,12 +40,14 @@ const BooksPage = () => {
             {statusLoading === "loading" && !isPagination ? <PageLoader /> : <BookList bookList={bookList} />}
             {lengthBooksList > 0 ? (
                 <>
-                    <Button
-                        disabled={lengthBooksList < recordLimit ? true : false}
-                        style="Button Button_center Button_mb50"
-                        text="Показать больше"
-                        handler={handleLimit}
-                    />
+                    <ButtonLayout className="ButtonLayout_center ButtonLayout_mb50">
+                        <Button
+                            variant="light"
+                            disabled={lengthBooksList < recordLimit ? true : false}
+                            text="Показать больше"
+                            onClick={handleLimit}
+                        />
+                    </ButtonLayout>
                     <Select />
                 </>
             ) : null}

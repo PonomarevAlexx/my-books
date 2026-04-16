@@ -1,4 +1,4 @@
-import type { AuthResponse } from "@/models/response/AuthResponse";
+import type { AuthResponse } from "@/features/user/model/types";
 import axios from "axios";
 
 const $api = axios.create({
@@ -11,6 +11,8 @@ $api.interceptors.request.use((config) => {
     return config;
 });
 
+
+//not work?
 $api.interceptors.response.use(
     (config) => {
         return config;
