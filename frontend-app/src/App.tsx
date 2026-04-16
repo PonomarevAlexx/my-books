@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { Routes, Route } from "react-router";
 import { BooksPageLazy } from "./pages/booksPage/BooksPage.lazy";
 import { BookInfoPageLazy } from "./pages/bookInfoPage/BookInfoPage.lazy";
@@ -9,8 +9,20 @@ import { AuthorsPageLazy } from "./pages/authorsPage/AuthorsPage.lazy";
 import { AuthorPageLazy } from "./pages/authorInfoPage/AuthorInfoPage.lazy";
 import { ScrollToTopButton } from "./components/scrollToTopButton/ScrollToTopButton";
 import { LoginPageLazy } from "./pages/loginPage/LoginPage.lazy";
+import { checkAuthThunk } from "./features/user/model/userThunks";
+import { useAppDispatch } from "./hooks/hooks";
 
 function App() {
+    const dispatch = useAppDispatch();
+    const hasChecked = useRef(false);
+
+    useEffect(() => {
+        if (!hasChecked.current && localStorage.getItem("token")) {
+            dispatch(checkAuthThunk());
+            hasChecked.current = true;
+        }
+    }, [dispatch]);
+
     return (
         <>
             <Header />

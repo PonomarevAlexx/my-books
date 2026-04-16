@@ -1,22 +1,20 @@
 import "./style.scss";
 
 interface ButtonOptions {
-    style: string;
     text: string;
     disabled: boolean;
-    handler: () => void;
+    variant: string;
+    onClick: () => void;
 }
 
-export const Button: React.FC<ButtonOptions> = ({ style, text, disabled, handler }) => {
+export const Button: React.FC<ButtonOptions> = ({ text, disabled, variant, onClick }) => {
     return (
-        <div className={style}>
-            <button
-                disabled={disabled}
-                className={disabled ? "Button-btn-disabled" : "Button-btn"}
-                onClick={handler}
-            >
-                {text}
-            </button>
-        </div>
+        <button
+            disabled={disabled}
+            className={`Button Button-${variant} ${disabled ? "Button-disabled" : ""}`}
+            onClick={onClick}
+        >
+            {text}
+        </button>
     );
 };

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./style.scss";
-import { InputComponent } from "../inputComponent/Input";
+import { Search } from "../search/Search";
 import { useState } from "react";
 
 export const Header = () => {
@@ -14,7 +14,7 @@ export const Header = () => {
                         My Books
                     </NavLink>
                 </div>
-                <InputComponent />
+                <Search />
                 <nav className={!isOpen ? "Header-nav" : "Header-nav Header-nav-active"}>
                     <NavLink
                         onClick={() => {

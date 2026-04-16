@@ -7,6 +7,7 @@ import { useAppSelector } from "@/hooks/hooks";
 import { selectLength, selectListBooksOfAuthor } from "@/features/author/model/selectors";
 import { Button } from "../button/Button";
 import { useState } from "react";
+import { ButtonLayout } from "../buttonLayout/ButtonLayout";
 
 interface AuthorInfo {
     author: Author;
@@ -60,11 +61,14 @@ const AuthorInfo: React.FC<AuthorInfo> = ({ author }) => {
             </div>
             <BookList bookList={isShowAll && length > 4 ? bookList : bookListShort} />
             {length > 4 && (
-                <Button
-                    style="Button Button_center"
-                    text={isShowAll ? "Показать меньше" : "Показать больше"}
-                    handler={handleIsShow}
-                />
+                <ButtonLayout className="ButtonLayout_center">
+                    <Button
+                        variant="light"
+                        disabled={false}
+                        text={isShowAll ? "Показать меньше" : "Показать больше"}
+                        onClick={handleIsShow}
+                    />
+                </ButtonLayout>
             )}
         </div>
     );

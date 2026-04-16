@@ -1,0 +1,12 @@
+.ButtonLayout {
+    display: flex;
+
+    &_center {
+        justify-content: center;
+        align-items: center;
+    }
+
+    &_mb50 {
+        margin-bottom: 50px;
+    }
+}
