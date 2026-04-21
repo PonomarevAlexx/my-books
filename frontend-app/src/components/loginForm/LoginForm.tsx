@@ -66,20 +66,8 @@ export const LoginForm = () => {
                     />
                 </div>
                 <div className="LoginForm-control">
-                    <Button
-                        styleForBtn="Button-btn-dark"
-                        style="Button"
-                        text="Войти"
-                        disabled={false}
-                        handler={handleLogin}
-                    />
-                    <Button
-                        text="Зарегистрироваться"
-                        styleForBtn="Button-btn-dark"
-                        style="Button"
-                        disabled={false}
-                        handler={handleRegistration}
-                    />
+                    <Button variant="dark" text="Войти" disabled={false} onClick={handleLogin} />
+                    <Button text="Зарегистрироваться" variant="dark" disabled={false} onClick={handleRegistration} />
                 </div>
             </form>
         </div>

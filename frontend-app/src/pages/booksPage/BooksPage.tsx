@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { setIsPagination } from "../../features/books/model/booksSlice";
-import { Layout } from "../../components/layout/Layout";
 import { PageLoader } from "../../components/pageLoader/PageLoader";
 import { Button } from "../../components/button/Button";
 import { ButtonLayout } from "@/components/buttonLayout/ButtonLayout";
@@ -36,9 +35,9 @@ const BooksPage = () => {
     };
 
     return (
-        <Layout>
+        <>
             {statusLoading === "loading" && !isPagination ? <PageLoader /> : <BookList bookList={bookList} />}
-            {lengthBooksList > 0 ? (
+            {lengthBooksList > 0 && statusLoading !== "loading" ? (
                 <>
                     <ButtonLayout className="ButtonLayout_center ButtonLayout_mb50">
                         <Button
@@ -51,7 +50,7 @@ const BooksPage = () => {
                     <Select />
                 </>
             ) : null}
-        </Layout>
+        </>
     );
 };
 

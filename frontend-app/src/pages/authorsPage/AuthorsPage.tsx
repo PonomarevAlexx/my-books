@@ -1,4 +1,3 @@
-import { Layout } from "../../components/layout/Layout";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { selectIsPagination, selectLengthAuthorsList, selectStatusLoading } from "@/features/authors/model/selectors";
 import { setIsPagination } from "@/features/authors/model/authorsSlice";
@@ -29,10 +28,10 @@ const AuthorsPage = () => {
     };
 
     return (
-        <Layout>
+        <>
             {statusLoading === "loading" && !isPagination ? <PageLoader /> : <AuthorsList />}
 
-            {lenghtAuthorsList > 0 ? (
+            {lenghtAuthorsList > 0 && statusLoading !== "loading" ? (
                 <>
                     <ButtonLayout className="ButtonLayout_center ButtonLayout_mb50">
                         <Button
@@ -45,7 +44,7 @@ const AuthorsPage = () => {
                     <Select />
                 </>
             ) : null}
-        </Layout>
+        </>
     );
 };
 
