@@ -3,7 +3,7 @@ import AuthorInfo from "../../components/authorInfo/AuthorInfo";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useParams } from "react-router";
 import { fetchAuthor } from "@/features/author/model/authorThunk";
-import { selectAuthor, selectStatus } from "@/features/author/model/selectors";
+import { selectAuthor, selectErrrorAuthor, selectStatus } from "@/features/author/model/selectors";
 import type { Author } from "@/features/author/model/types";
 import { PageLoader } from "../../components/pageLoader/PageLoader";
 
@@ -19,12 +19,17 @@ const AuthorPage = () => {
 
     const author = useAppSelector(selectAuthor);
     const status = useAppSelector(selectStatus);
+    const error = useAppSelector(selectErrrorAuthor);
 
     const isAuthor = (author: Author | null): author is Author => {
         return author !== null;
     };
 
-    return status === "resolved" && isAuthor(author) ? <AuthorInfo author={author} /> : <PageLoader />;
+    if (status === "rejected") throw new Error(error);
+
+    if (status === "loading") return <PageLoader />;
+
+    if (status === "resolved" && isAuthor(author)) return <AuthorInfo author={author} />;
 };
 
 export default AuthorPage;

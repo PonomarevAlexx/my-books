@@ -2,9 +2,14 @@ import { NavLink } from "react-router-dom";
 import "./style.scss";
 import { Search } from "../search/Search";
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import { selectIsAuth } from "@/features/user/model/selectors";
+import { logoutThunk } from "@/features/user/model/userThunks";
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const isAuth = useAppSelector(selectIsAuth);
+    const dispatch = useAppDispatch();
 
     return (
         <div className="Header">
@@ -34,15 +39,28 @@ export const Header = () => {
                     >
                         Авторы
                     </NavLink>
-                    <NavLink
-                        onClick={() => {
-                            setIsOpen(false);
-                        }}
-                        className={({ isActive }) => (isActive ? "Header-nav-item active" : "Header-nav-item")}
-                        to="/login"
-                    >
-                        Вход
-                    </NavLink>
+                    {isAuth ? (
+                        <NavLink
+                            onClick={() => {
+                                setIsOpen(false);
+                                dispatch(logoutThunk());
+                            }}
+                            className={({ isActive }) => (isActive ? "Header-nav-item active" : "Header-nav-item")}
+                            to="/login"
+                        >
+                            Выход
+                        </NavLink>
+                    ) : (
+                        <NavLink
+                            onClick={() => {
+                                setIsOpen(false);
+                            }}
+                            className={({ isActive }) => (isActive ? "Header-nav-item active" : "Header-nav-item")}
+                            to="/login"
+                        >
+                            Вход
+                        </NavLink>
+                    )}
                 </nav>
                 <div className="Header-burgerBtn" onClick={() => setIsOpen(!isOpen)}>
                     <span />

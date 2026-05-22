@@ -6,7 +6,7 @@ interface BookList {
     bookList: BookShort[];
 }
 
-const BookList: React.FC<BookList> = ({ bookList }) => {
+const BookList: React.FC<BookList> = ({ bookList = [] }) => {
     return (
         <div className="bookList">
             {bookList.map((el) => (

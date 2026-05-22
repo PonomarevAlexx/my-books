@@ -15,3 +15,7 @@ export const selectLengthAuthorsList = (state: RootState) => {
 export const selectIsPagination = (state: RootState) => {
     return state.authors.isPagination;
 };
+
+export const selectErrorAuthors = (state: RootState) => {
+    return state.authors.error;
+};

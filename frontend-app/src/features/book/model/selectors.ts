@@ -7,3 +7,7 @@ export const selectBook = (state: RootState) => {
 export const selectStatusLoading = (state: RootState) => {
     return state.book.status;
 };
+
+export const selectErrorBook = (state: RootState) => {
+    return state.book.error;
+}

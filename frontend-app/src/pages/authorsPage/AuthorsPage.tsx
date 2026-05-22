@@ -1,5 +1,10 @@
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { selectIsPagination, selectLengthAuthorsList, selectStatusLoading } from "@/features/authors/model/selectors";
+import {
+    selectErrorAuthors,
+    selectIsPagination,
+    selectLengthAuthorsList,
+    selectStatusLoading,
+} from "@/features/authors/model/selectors";
 import { setIsPagination } from "@/features/authors/model/authorsSlice";
 import { PageLoader } from "@/components/pageLoader/PageLoader";
 import { Button } from "../../components/button/Button";
@@ -13,8 +18,9 @@ import { fetchAuthors } from "@/features/authors/model/authorsThunk";
 const AuthorsPage = () => {
     const dispatch = useAppDispatch();
     const lenghtAuthorsList = useAppSelector(selectLengthAuthorsList);
-    const statusLoading = useAppSelector(selectStatusLoading);
+    const status = useAppSelector(selectStatusLoading);
     const isPagination = useAppSelector(selectIsPagination);
+    const error = useAppSelector(selectErrorAuthors);
     const { nextPage, page, limit, search } = useQueryFilteres();
     const recordLimit = page * limit;
 
@@ -27,11 +33,13 @@ const AuthorsPage = () => {
         dispatch(setIsPagination());
     };
 
+    if (status === "rejected") throw new Error(error);
+
     return (
         <>
-            {statusLoading === "loading" && !isPagination ? <PageLoader /> : <AuthorsList />}
+            {status === "loading" && !isPagination ? <PageLoader /> : <AuthorsList />}
 
-            {lenghtAuthorsList > 0 && statusLoading !== "loading" ? (
+            {lenghtAuthorsList > 0 && status !== "loading" ? (
                 <>
                     <ButtonLayout className="ButtonLayout_center ButtonLayout_mb50">
                         <Button

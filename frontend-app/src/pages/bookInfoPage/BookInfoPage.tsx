@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { selectBook, selectStatusLoading } from "@/features/book/model/selectors";
+import { selectBook, selectErrorBook, selectStatusLoading } from "@/features/book/model/selectors";
 import { fetchBook } from "@/features/book/model/bookThunks";
 import { useEffect } from "react";
 import { PageLoader } from "../../components/pageLoader/PageLoader";
@@ -19,12 +19,17 @@ const BookInfoPage = () => {
 
     const book = useAppSelector(selectBook);
     const status = useAppSelector(selectStatusLoading);
+    const error = useAppSelector(selectErrorBook);
 
     const isBook = (book: Book | null): book is Book => {
         return book !== null;
     };
 
-    return status === "resolved" && isBook(book) ? <BookInfo book={book} /> : <PageLoader />;
+    if (status === "rejected") throw new Error(error);
+
+    if (status === "loading") return <PageLoader />;
+
+    if (status === "resolved" && isBook(book)) return <BookInfo book={book} />;
 };
 
 export default BookInfoPage;

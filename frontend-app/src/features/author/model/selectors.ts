@@ -15,3 +15,7 @@ export const selectListBooksOfAuthor = (state: RootState) => {
 export const selectLength = (state: RootState) => {
     return state.author.length;
 };
+
+export const selectErrrorAuthor = (state: RootState) => {
+    return state.author.error;
+};

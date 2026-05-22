@@ -7,6 +7,7 @@ import BookList from "../../components/bookList/BookList";
 import { Select } from "@/components/select/Select";
 import {
     selectAllBooks,
+    selectErrorBooks,
     selectIsPagination,
     selectLengthBooksList,
     selectStatusLoading,
@@ -18,8 +19,9 @@ import { fetchBooks } from "@/features/books/model/booksThunks";
 const BooksPage = () => {
     const dispatch = useAppDispatch();
     const lengthBooksList = useAppSelector(selectLengthBooksList);
-    const statusLoading = useAppSelector(selectStatusLoading);
+    const status = useAppSelector(selectStatusLoading);
     const isPagination = useAppSelector(selectIsPagination);
+    const error = useAppSelector(selectErrorBooks);
     const bookList = useAppSelector(selectAllBooks);
 
     const { limit, search, page, nextPage } = useQueryFilteres();
@@ -34,10 +36,12 @@ const BooksPage = () => {
         dispatch(setIsPagination());
     };
 
+    if (status === "rejected") throw new Error(error);
+
     return (
         <>
-            {statusLoading === "loading" && !isPagination ? <PageLoader /> : <BookList bookList={bookList} />}
-            {lengthBooksList > 0 && statusLoading !== "loading" ? (
+            {status === "loading" && !isPagination ? <PageLoader /> : <BookList bookList={bookList} />}
+            {lengthBooksList > 0 && status !== "loading" ? (
                 <>
                     <ButtonLayout className="ButtonLayout_center ButtonLayout_mb50">
                         <Button

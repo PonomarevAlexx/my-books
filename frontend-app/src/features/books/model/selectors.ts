@@ -15,3 +15,7 @@ export const selectLengthBooksList = (state: RootState) => {
 export const selectIsPagination = (state: RootState) => {
     return state.books.isPagination;
 };
+
+export const selectErrorBooks = (state: RootState) => {
+    return state.books.error;
+};

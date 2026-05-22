@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useRef } from "react";
-import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider, Outlet } from "react-router-dom";
 import { BooksPageLazy } from "./pages/booksPage/BooksPage.lazy";
 import { BookInfoPageLazy } from "./pages/bookInfoPage/BookInfoPage.lazy";
 import { PageLoader } from "./components/pageLoader/PageLoader";
@@ -10,16 +10,28 @@ import { checkAuthThunk } from "./features/user/model/userThunks";
 import { useAppDispatch } from "./hooks/hooks";
 import { MainLayout } from "./components/mainLayout/MainLayout";
 import { cleanQueryLoader } from "./shared/loaders/cleanQueryLoader";
+import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
+import ErrorBoundaryFallback from "./components/errorBoundaryFallback/ErrorBoundaryFallback";
+import { ErrorPageLazy } from "./pages/errorPage/ErrorPage.lazy";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route element={<MainLayout />}>
-            <Route path={"/books"} element={<BooksPageLazy />} />
-            <Route path={"/authors"} element={<AuthorsPageLazy />} />
-            <Route loader={cleanQueryLoader}>
-                <Route path={"/book/:id"} element={<BookInfoPageLazy />} />
-                <Route path={"/author/:id"} element={<AuthorPageLazy />} />
-                <Route path={"/login"} element={<LoginPageLazy />} />
+            <Route
+                element={
+                    <Suspense fallback={<PageLoader />}>
+                        <Outlet />
+                    </Suspense>
+                }
+                errorElement={<ErrorPageLazy />}
+            >
+                <Route path={"/books"} element={<BooksPageLazy />} />
+                <Route path={"/authors"} element={<AuthorsPageLazy />} />
+                <Route loader={cleanQueryLoader}>
+                    <Route path={"/book/:id"} element={<BookInfoPageLazy />} />
+                    <Route path={"/author/:id"} element={<AuthorPageLazy />} />
+                    <Route path={"/login"} element={<LoginPageLazy />} />
+                </Route>
             </Route>
         </Route>,
     ),
@@ -37,9 +49,9 @@ function App() {
     }, [dispatch]);
 
     return (
-        <Suspense fallback={<PageLoader />}>
+        <ErrorBoundary fallback={ErrorBoundaryFallback}>
             <RouterProvider router={router} />
-        </Suspense>
+        </ErrorBoundary>
     );
 }
 
