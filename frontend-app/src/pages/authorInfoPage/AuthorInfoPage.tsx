@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import AuthorInfo from "../../components/authorInfo/AuthorInfo";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import AuthorInfo from "@/components/authorInfo/AuthorInfo";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { useParams } from "react-router";
 import { fetchAuthor } from "@/features/author/model/authorThunk";
 import { selectAuthor, selectErrrorAuthor, selectStatus } from "@/features/author/model/selectors";
 import type { Author } from "@/features/author/model/types";
-import { PageLoader } from "../../components/pageLoader/PageLoader";
+import { PageLoader } from "@/components/pageLoader/PageLoader";
 
 const AuthorPage = () => {
     const dispatch = useAppDispatch();

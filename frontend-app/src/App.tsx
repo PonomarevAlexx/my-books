@@ -13,6 +13,7 @@ import { cleanQueryLoader } from "./shared/loaders/cleanQueryLoader";
 import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
 import ErrorBoundaryFallback from "./components/errorBoundaryFallback/ErrorBoundaryFallback";
 import { ErrorPageLazy } from "./pages/errorPage/ErrorPage.lazy";
+import { PageNotFoundLazy } from "./pages/pageNotFound/PageNotFound.lazy";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
                     <Route path={"/book/:id"} element={<BookInfoPageLazy />} />
                     <Route path={"/author/:id"} element={<AuthorPageLazy />} />
                     <Route path={"/login"} element={<LoginPageLazy />} />
+                    <Route path={"*"} element={<PageNotFoundLazy />} />
                 </Route>
             </Route>
         </Route>,
